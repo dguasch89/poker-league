@@ -1,11 +1,11 @@
-import goldMedal from '../assets/gold_medal.png';
-import silverMedal from '../assets/silver_medal.png';
-import bronzeMedal from '../assets/bronze_medal.png';
-import './home.css';
+import goldMedal from '../../assets/gold_medal.png';
+import silverMedal from '../../assets/silver_medal.png';
+import bronzeMedal from '../../assets/bronze_medal.png';
+import './homePage.css';
 
-export function Home() {
+export function HomePage() {
   return (
-    <div className="Home">
+    <div className="HomePage">
       <section className="banner flex flex-col gap-2 items-center justify-items-center bg-emerald-500 p-5">
         <h2 className="font-bold text-md text-amber-500">POKER LEAGUE</h2>
         <h1 className="font-bold text-4xl text-white italic">UXLAND</h1>
