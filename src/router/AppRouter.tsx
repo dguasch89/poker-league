@@ -5,8 +5,9 @@ export const HOME = '/';
 export const PLAYERS = '/players';
 export const CALENDAR = '/calendar';
 export const RULES = '/rules';
+
+export const mainRoute = '/';
 export const routes = {
-  home: '/',
   players: '/players',
   calendar: '/calendar',
   rules: '/rules',
@@ -15,7 +16,7 @@ export const routes = {
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path={routes.home} element={<HomePage />} />
+      <Route path={mainRoute} element={<HomePage />} />
       {/* <Route path="*" element={<PageNotFound />} /> */}
       {/* <Route path={ERROR} element={<ErrorPage />} /> */}
     </Routes>
