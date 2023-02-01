@@ -4,7 +4,7 @@ export interface IEntityDescription {
 }
 
 export interface IPlayer {
-  id: string;
+  id: number;
   name: string;
   surname: string;
   nickname: string;

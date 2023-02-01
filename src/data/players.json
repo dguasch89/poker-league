@@ -1,83 +1,83 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "name": "Daniel",
     "surname": "Sanchez",
     "nickname": "Cambiasyugi",
     "lastSeasonPosition": 3
   },
   {
-    "id": "2",
+    "id": 2,
     "name": "Natán",
     "surname": "Peris",
     "nickname": "nperis",
     "lastSeasonPosition": 2
   },
   {
-    "id": "3",
+    "id": 3,
     "name": "Cristian",
     "surname": "Payet",
     "nickname": "Payetus",
     "lastSeasonPosition": 10
   },
   {
-    "id": "4",
+    "id": 4,
     "name": "Víctor",
     "surname": "Castany",
     "nickname": "Vicuxland",
     "lastSeasonPosition": 4
   },
   {
-    "id": "5",
+    "id": 5,
     "name": "Roger",
     "surname": "González",
     "nickname": "rogeruxland",
     "lastSeasonPosition": 9
   },
   {
-    "id": "6",
+    "id": 6,
     "name": "Manel",
     "surname": "López",
     "nickname": "Pericoquevuela",
     "lastSeasonPosition": 5
   },
   {
-    "id": "7",
+    "id": 7,
     "name": "Joan",
     "surname": "Bruguera",
     "nickname": "lenstra2",
     "lastSeasonPosition": 1
   },
   {
-    "id": "8",
+    "id": 8,
     "name": "Xavier",
     "surname": "Vicente",
     "nickname": "javivicente91",
     "lastSeasonPosition": 7
   },
   {
-    "id": "9",
+    "id": 9,
     "name": "Jordi",
     "surname": "Sánchez",
     "nickname": "Jordi848",
     "lastSeasonPosition": 12
   },
   {
-    "id": "10",
+    "id": 10,
     "name": "David",
     "surname": "Guasch",
     "nickname": "dguaschm",
     "lastSeasonPosition": 6
   },
   {
-    "id": "11",
+    "id": 11,
     "name": "Daní",
     "surname": "Pinart",
     "nickname": "alomogaverAAA",
     "lastSeasonPosition": 11
   },
   {
-    "id": "12",
+    "id": 12,
     "name": "Albert",
     "surname": "Mosella",
     "nickname": "muse295",

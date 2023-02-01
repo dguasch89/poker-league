@@ -1,6 +1,12 @@
 [
   {
     "id": 1,
-    "description": "Season 1"
+    "description": "Season 1",
+    "games": [
+      {
+        "id": 1,
+        "description": "Game 1"
+      }
+    ]
   }
 ]
