@@ -6,7 +6,7 @@ export function Players() {
   const players: IPlayer[] = usePlayersStore.getState().players;
   return (
     <div className="Players p-4 sm:grid sm:grid-cols-4 gap-4 flex flex-col">
-      {players.map((player: IPlayer) => (
+      {players?.reverse().map((player: IPlayer) => (
         <Player key={player.id} player={player} />
       ))}
     </div>
