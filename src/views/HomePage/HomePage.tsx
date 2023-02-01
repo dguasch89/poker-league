@@ -35,7 +35,7 @@ export function HomePage() {
         </div>
       </div>
       {seasonSelected === 1 && (
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-col sm:flex-row gap-8">
           <section className="flex flex-col sm:flex-row items-center gap-4 p-4 pl-6 pr-6">
             <div className="flex flex-col w-full sm:w-auto p-4 text-white bg-slate-800 rounded-md sm:min-w">
               <div className="flex flex-row justify-between sm:gap-12">
