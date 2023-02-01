@@ -7,10 +7,7 @@ interface PlayerProps {
 
 export function Player(props: PlayerProps) {
   return (
-    <div
-      key={props.player.id}
-      className="flex flex-row gap-2 rounded-md bg-slate-800 p-4 text-white hover:-rotate-6 cursor-pointer transition duration-150 relative"
-    >
+    <div className="flex flex-row gap-2 rounded-md bg-slate-800 p-4 text-white hover:-rotate-6 cursor-pointer transition duration-150 relative">
       <img src={devAvatar} alt="dev" className="w-16" />
       <div className="flex flex-col">
         <div className="font-bold text-2xl">{props.player.nickname}</div>

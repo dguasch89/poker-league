@@ -6,7 +6,7 @@ export function Rules() {
   return (
     <div className="p-10 flex flex-col gap-4">
       {rules.map((rule: IEntityDescription) => (
-        <Rule rule={rule} />
+        <Rule key={rule.id} rule={rule} />
       ))}
     </div>
   );
