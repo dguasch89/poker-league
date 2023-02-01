@@ -28,7 +28,7 @@ export const getPlayerSeasonPoints = (seasonId: number, playerId: number) => {
     const points = getPlayerGamePoints(curr, playerId);
     return (acc += isLastGame(curr) ? points * 2 : points);
   }, 0);
-  return totalPoints;
+  return totalPoints || 0;
 };
 
 export const getPlayerSeasonGamesCount = (seasonId: number, playerId: number) => {
@@ -38,9 +38,9 @@ export const getPlayerSeasonGamesCount = (seasonId: number, playerId: number) =>
     const index = curr.standings.findIndex(id => id === playerId);
     return (acc += index != -1 ? 1 : 0);
   }, 0);
-  return totalGames;
+  return totalGames || 0;
 };
-export const getPlayerSeasonPointsPerGamePercentage = (seasonId: number, playerId: number) => {
+export const getPlayerSeasonPointsPerGamePercentage = (seasonId: number, playerId: number): any => {
   const totalSeasonPoints = getPlayerSeasonPoints(seasonId, playerId);
   const totalSeasonGames = getPlayerSeasonGamesCount(seasonId, playerId);
   return totalSeasonGames > 0 ? (totalSeasonPoints / totalSeasonGames).toFixed(2) : 0;

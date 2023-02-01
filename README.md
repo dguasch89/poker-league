@@ -19,7 +19,7 @@ An app to handle internal poker league. Shows all played seasons, best players, 
 
 ### Dev
 
-`yarn dev && yarn build-css`
+`yarn dev && yarn build-css-watch`
 
 ### Deploy
 

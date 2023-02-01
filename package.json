@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "test": "echo no tests yet",
+    "build": "tsc && yarn build-css && vite build",
     "preview": "vite preview",
-    "build-css": "npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
+    "build-css": "npx tailwindcss -i ./src/index.css -o ./dist/output.css",
+    "build-css-watch": "npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
   },
   "dependencies": {
     "react": "^18.2.0",
