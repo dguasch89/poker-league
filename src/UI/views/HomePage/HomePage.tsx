@@ -1,8 +1,6 @@
 import {useState} from 'react';
 import {IPlayer} from '../../../domain/interfaces';
-import {getPlayerSeasonPoints} from '../../../domain/utils';
 import {usePlayersStore} from '../../../state/players';
-
 import {SeasonHighlights} from '../../components/SeasonHighlights';
 import {Standings} from '../../components/Standings';
 import './homePage.css';
@@ -16,7 +14,7 @@ export function HomePage() {
         <h2 className="font-bold text-md text-amber-500">POKER LEAGUE</h2>
         <h1 className="font-bold text-4xl text-white italic">UXLAND</h1>
       </section>
-      <div className="flex flex-row gap-6 p-6 pt-8 pb-4">
+      <div className="flex flex-row gap-6 p-8 pb-4">
         <div
           onClick={e => setSeasonSelected(1)}
           className={`font-bold text-xl cursor-pointer transition duration-150 ${
@@ -39,12 +37,10 @@ export function HomePage() {
         </div>
       </div>
       {seasonSelected === 1 && (
-        <div className="flex flex-col sm:flex-row gap-8">
-          <div className="flex flex-col w-full gap-4">
-            <SeasonHighlights seasonId={1} />
-          </div>
+        <div className="flex flex-col sm:flex-row gap-8 p-4 sm:pr-8 sm:pl-8">
+          <SeasonHighlights seasonId={1} />
 
-          <section className="flex flex-col w-full p-6">
+          <section className="flex flex-col w-full">
             <Standings season={1} />
           </section>
         </div>

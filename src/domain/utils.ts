@@ -59,3 +59,12 @@ export const getBestSeasonPlayers = (seasonId: number) => {
   const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(seasonId, players);
   return sortedPlayers.slice(0, 3);
 };
+
+export const getBestPointsPerGamePercentagePlayer = (seasonId: number, players: IPlayer[]) => {
+  return players.sort((a: IPlayer, b: IPlayer) => {
+    return (
+      getPlayerSeasonPointsPerGamePercentage(seasonId, b.id) -
+      getPlayerSeasonPointsPerGamePercentage(seasonId, a.id)
+    );
+  })[0];
+};

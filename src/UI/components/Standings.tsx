@@ -16,12 +16,14 @@ export function Standings(props: StandingsProps) {
 
   return (
     <div className="flex flex-col border-slate-200 border rounded-md shadow-lg">
-      <div className="grid grid-cols-standings gap-4 bg-slate-800 p-4 rounded-t-md">
-        <div className="font-bold uppercase text-white text-xs sm:text-sm">POS</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm">PLAYER</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm">%P/G</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm">GAMES</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right">POINTS</div>
+      <div className="grid grid-cols-standings gap-4 bg-slate-800 rounded-t-md">
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 pl-4">POS</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4">PLAYER</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4">%P/G</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4">GAMES</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4">
+          POINTS
+        </div>
       </div>
       <div className="flex flex-col">
         {sortedPlayers.map((player: IPlayer, index) => (
