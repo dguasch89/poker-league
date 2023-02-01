@@ -1,4 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
+import {Calendar} from '../views/Calendar';
 import {HomePage} from '../views/HomePage/HomePage';
 import {Players} from '../views/Players';
 import {Rules} from '../views/Rules';
@@ -21,6 +22,7 @@ export const AppRouter = () => {
       <Route path={mainRoute} element={<HomePage />} />
       <Route path={routes.players} element={<Players />} />
       <Route path={routes.rules} element={<Rules />} />
+      <Route path={routes.calendar} element={<Calendar />} />
       {/* <Route path="*" element={<PageNotFound />} /> */}
       {/* <Route path={ERROR} element={<ErrorPage />} /> */}
     </Routes>
