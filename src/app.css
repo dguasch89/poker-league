@@ -1,3 +1,8 @@
+.App {
+  min-height: 1px;
+  height: 100%;
+}
+
 .App header {
   background: linear-gradient(236.07deg, #f7ab35 0.09%, #e8521e 102.47%);
 }
