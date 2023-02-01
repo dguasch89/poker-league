@@ -1,4 +1,4 @@
-import {IPlayer} from '../model/player';
+import {IPlayer} from '../model/interfaces';
 import devAvatar from '../assets/dev.png';
 import trophy from '../assets/trophy.png';
 interface PlayerProps {
