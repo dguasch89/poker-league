@@ -1,4 +1,4 @@
-export function Calendar() {
+export function Schedule() {
   return (
     <div className="p-20 bg-indigo-900">
       <h2 className="font-bold text-center text-2xl text-white italic ">
