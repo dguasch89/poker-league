@@ -43,7 +43,7 @@ export const getPlayerSeasonGamesCount = (seasonId: number, playerId: number) =>
 export const getPlayerSeasonPointsPerGamePercentage = (seasonId: number, playerId: number) => {
   const totalSeasonPoints = getPlayerSeasonPoints(seasonId, playerId);
   const totalSeasonGames = getPlayerSeasonGamesCount(seasonId, playerId);
-  return (totalSeasonPoints / totalSeasonGames).toFixed(2);
+  return totalSeasonGames > 0 ? (totalSeasonPoints / totalSeasonGames).toFixed(2) : 0;
 };
 
 export const sortPlayersByTotalSeasonPointsDesc = (seasonId: number, players: IPlayer[]) => {
@@ -67,4 +67,8 @@ export const getBestPointsPerGamePercentagePlayer = (seasonId: number, players: 
       getPlayerSeasonPointsPerGamePercentage(seasonId, a.id)
     );
   })[0];
+};
+
+export const isSeasonFinalized = (season: ISeason) => {
+  return season.games.length === 10;
 };

@@ -54,5 +54,10 @@
         "standings": [2, 7, 12, 1, 10, 6]
       }
     ]
+  },
+  {
+    "id": 2,
+    "description": "Season 2",
+    "games": []
   }
 ]

@@ -1,13 +1,14 @@
 import {useState} from 'react';
-import {IPlayer} from '../../../domain/interfaces';
-import {usePlayersStore} from '../../../state/players';
 import {SeasonHighlights} from '../../components/SeasonHighlights';
 import {Standings} from '../../components/Standings';
 import './homePage.css';
+import {useSeasonsStore} from '../../../state/seasons';
+import {ISeason} from '../../../domain/interfaces';
+import {isSeasonFinalized} from '../../../domain/utils';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(1);
-  const players: IPlayer[] = usePlayersStore.getState().players;
+  const seasons = useSeasonsStore.getState().seasons;
   return (
     <div className="HomePage">
       <section className="banner flex flex-col gap-2 items-center justify-items-center bg-emerald-500 p-5">
@@ -36,15 +37,26 @@ export function HomePage() {
           Season 2
         </div>
       </div>
-      {seasonSelected === 1 && (
-        <div className="flex flex-col sm:flex-row gap-8 p-4 sm:pr-8 sm:pl-8">
-          <SeasonHighlights seasonId={1} />
+      {seasons.map((season: ISeason) => (
+        <div
+          key={season.id}
+          className={`flex flex-col sm:flex-row gap-8 p-4 sm:pr-8 sm:pl-8 ${
+            seasonSelected != season.id && 'hidden'
+          } `}
+        >
+          {isSeasonFinalized(season) ? (
+            <SeasonHighlights seasonId={season.id} />
+          ) : (
+            <div className="flex bg-indigo-800 rounded-md text-center text-white items-center justify-center font-semibold text-2xl italic p-10 w-full">
+              Highlights will appear when season ends
+            </div>
+          )}
 
           <section className="flex flex-col w-full">
-            <Standings season={1} />
+            <Standings season={season.id} />
           </section>
         </div>
-      )}
+      ))}
     </div>
   );
 }
