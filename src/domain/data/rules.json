@@ -26,5 +26,9 @@
   {
     "id": "07",
     "description": "It is totally forbidden to insult or make obscene comments in the game chat."
+  },
+  {
+    "id": "08",
+    "description": "If a registered player does not attend the game, he will automatically score 0 regardless of the position in which he is left."
   }
 ]
