@@ -2,6 +2,7 @@ import {IPlayer} from '../../domain/interfaces';
 import {
   getPlayerSeasonGamesCount,
   getPlayerSeasonPoints,
+  getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
 } from '../../domain/utils';
 import {usePlayersStore} from '../../state/players';
@@ -18,6 +19,7 @@ export function Standings(props: StandingsProps) {
       <div className="grid grid-cols-standings gap-4 bg-slate-800 p-4 rounded-t-md">
         <div className="font-bold uppercase text-white text-sm">POS</div>
         <div className="font-bold uppercase text-white text-sm">PLAYER</div>
+        <div className="font-bold uppercase text-white text-sm">%P/G</div>
         <div className="font-bold uppercase text-white text-sm">GAMES</div>
         <div className="font-bold uppercase text-white text-sm text-right">POINTS</div>
       </div>
@@ -28,6 +30,9 @@ export function Standings(props: StandingsProps) {
               {index + 1}
             </div>
             <div className="text-xs font-bold p-2">{player.nickname}</div>
+            <div className="text-xs p-2">
+              {getPlayerSeasonPointsPerGamePercentage(props.season, player.id)}
+            </div>
             <div className="text-xs p-2">{getPlayerSeasonGamesCount(props.season, player.id)}</div>
             <div className="text-sm p-2 text-right pr-8">
               {getPlayerSeasonPoints(props.season, player.id)}
