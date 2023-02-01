@@ -1,14 +1,16 @@
-import goldMedal from '../../assets/gold_medal.png';
-import silverMedal from '../../assets/silver_medal.png';
-import bronzeMedal from '../../assets/bronze_medal.png';
-import players from '../../data/players.json';
-import './homePage.css';
 import {useState} from 'react';
 import {IPlayer} from '../../../domain/interfaces';
 import {getPlayerSeasonPoints} from '../../../domain/utils';
+import {usePlayersStore} from '../../../state/players';
+import bronzeMedal from '../../assets/bronze_medal.png';
+import goldMedal from '../../assets/gold_medal.png';
+import silverMedal from '../../assets/silver_medal.png';
+import {Standings} from '../../components/Standings';
+import './homePage.css';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(1);
+  const players: IPlayer[] = usePlayersStore.getState().players;
   return (
     <div className="HomePage">
       <section className="banner flex flex-col gap-2 items-center justify-items-center bg-emerald-500 p-5">
@@ -39,7 +41,7 @@ export function HomePage() {
       </div>
       {seasonSelected === 1 && (
         <div className="flex flex-col sm:flex-row gap-8">
-          <section className="flex flex-col sm:flex-row items-center gap-4 p-4 pl-6 pr-6">
+          <section className="flex flex-col w-full sm:flex-row items-center gap-4 p-4 pl-6 pr-6">
             <div className="flex flex-col w-full sm:w-auto p-4 text-white bg-slate-800 rounded-md sm:min-w">
               <div className="flex flex-row justify-between sm:gap-12">
                 <div className="text-4xl font-medium">1st</div>
@@ -65,13 +67,8 @@ export function HomePage() {
               <div className="text-sm">Daniel Sánchez</div>
             </div>
           </section>
-          <section className="flex flex-col">
-            <h3>Standings</h3>
-            {/* {players.map((player: IPlayer) => (
-              <div>
-                {player.name} - {getPlayerSeasonPoints(1, player.id)}
-              </div>
-            ))} */}
+          <section className="flex flex-col w-full p-6">
+            <Standings season={1} />
           </section>
         </div>
       )}
