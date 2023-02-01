@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         // Complex site-specific column configuration
-        standings: '10% 1fr 13% 13% 13%',
+        standings: '10% 1fr 15% 15% 15%',
       },
     },
   },

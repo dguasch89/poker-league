@@ -39,7 +39,7 @@ export function Standings(props: StandingsProps) {
               {getPlayerSeasonPointsPerGamePercentage(props.season, player.id)}
             </div>
             <div className="text-xs p-2">{getPlayerSeasonGamesCount(props.season, player.id)}</div>
-            <div className="font-bold text-sm text-indigo-800 text-right pr-8">
+            <div className="font-bold text-sm text-indigo-800 text-right pr-6">
               {getPlayerSeasonPoints(props.season, player.id)}
             </div>
           </div>

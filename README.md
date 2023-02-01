@@ -24,5 +24,5 @@ An app to handle internal poker league. Shows all played seasons, best players, 
 ### Deploy
 
 ```
-Pull request to PRO and Github Action will run
+All code pushed to main will be trigger a Github action, that will compile, test and build code and deploy to netlify automatically
 ```
