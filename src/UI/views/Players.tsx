@@ -1,6 +1,6 @@
 import {Player} from '../components/Player';
-import players from '../data/players.json';
-import {IPlayer} from '../model/interfaces';
+import players from '../../domain/data/players.json';
+import {IPlayer} from '../../domain/interfaces';
 
 export function Players() {
   return (

@@ -10,3 +10,15 @@ export interface IPlayer {
   nickname: string;
   lastSeasonPosition: number;
 }
+
+export interface IGame {
+  id: number;
+  description: string;
+  standings: number[];
+}
+
+export interface ISeason {
+  id: number;
+  description: string;
+  games: IGame[];
+}

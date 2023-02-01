@@ -1,6 +1,6 @@
 import {Rule} from '../components/Rule';
-import rules from '../data/rules.json';
-import {IEntityDescription} from '../model/interfaces';
+import rules from '../../domain/data/rules.json';
+import {IEntityDescription} from '../../domain/interfaces';
 
 export function Rules() {
   return (

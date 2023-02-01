@@ -1,8 +1,11 @@
 import goldMedal from '../../assets/gold_medal.png';
 import silverMedal from '../../assets/silver_medal.png';
 import bronzeMedal from '../../assets/bronze_medal.png';
+import players from '../../data/players.json';
 import './homePage.css';
 import {useState} from 'react';
+import {IPlayer} from '../../../domain/interfaces';
+import {getPlayerSeasonPoints} from '../../../domain/utils';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(1);
@@ -63,7 +66,12 @@ export function HomePage() {
             </div>
           </section>
           <section className="flex flex-col">
-            <h3>Ranking</h3>
+            <h3>Standings</h3>
+            {/* {players.map((player: IPlayer) => (
+              <div>
+                {player.name} - {getPlayerSeasonPoints(1, player.id)}
+              </div>
+            ))} */}
           </section>
         </div>
       )}

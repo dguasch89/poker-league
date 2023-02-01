@@ -1,4 +1,4 @@
-import {IEntityDescription} from '../model/interfaces';
+import {IEntityDescription} from '../../domain/interfaces';
 interface RuleProps {
   rule: IEntityDescription;
 }
