@@ -1,3 +1,4 @@
+import {usePlayersStore} from '../state/players';
 import {useSeasonsStore} from '../state/seasons';
 import {IGame, IPlayer, ISeason} from './interfaces';
 const pointsByPosition = new Map([
@@ -51,4 +52,10 @@ export const sortPlayersByTotalSeasonPointsDesc = (seasonId: number, players: IP
       return getPlayerSeasonPoints(seasonId, a.id) - getPlayerSeasonPoints(seasonId, b.id);
     })
     .reverse();
+};
+
+export const getBestSeasonPlayers = (seasonId: number) => {
+  const players: IPlayer[] = usePlayersStore.getState().players;
+  const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(seasonId, players);
+  return sortedPlayers.slice(0, 3);
 };
