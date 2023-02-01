@@ -19,8 +19,12 @@ export function Standings(props: StandingsProps) {
       <div className="grid grid-cols-standings gap-4 bg-slate-800 rounded-t-md">
         <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 pl-4">POS</div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4">PLAYER</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4">%P/G</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4">GAMES</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4">
+          %P/G
+        </div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4">
+          GAMES
+        </div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4">
           POINTS
         </div>
@@ -35,11 +39,13 @@ export function Standings(props: StandingsProps) {
               {index + 1}
             </div>
             <div className="text-xs font-bold">{player.nickname}</div>
-            <div className="text-xs">
+            <div className="text-xs text-right">
               {getPlayerSeasonPointsPerGamePercentage(props.season, player.id)}
             </div>
-            <div className="text-xs p-2">{getPlayerSeasonGamesCount(props.season, player.id)}</div>
-            <div className="font-bold text-sm text-indigo-800 text-right pr-6">
+            <div className="text-xs p-2 text-right">
+              {getPlayerSeasonGamesCount(props.season, player.id)}
+            </div>
+            <div className="font-bold text-sm text-indigo-800 text-right pr-4">
               {getPlayerSeasonPoints(props.season, player.id)}
             </div>
           </div>
