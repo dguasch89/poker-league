@@ -1,5 +1,5 @@
 import {useSeasonsStore} from '../state/seasons';
-import {IGame, ISeason} from './interfaces';
+import {IGame, IPlayer, ISeason} from './interfaces';
 const pointsByPosition = new Map([
   [1, 25],
   [2, 18],
@@ -12,9 +12,11 @@ const pointsByPosition = new Map([
   [9, 2],
 ]);
 
+const isLastGame = (game: IGame) => game.id === 10;
+
 export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
   const index = game.standings.findIndex((id: number) => id === playerId);
-  const position = index && index + 1;
+  const position = index != -1 ? index + 1 : 0;
   return pointsByPosition.get(position) || 0;
 };
 
@@ -22,7 +24,26 @@ export const getPlayerSeasonPoints = (seasonId: number, playerId: number) => {
   const seasons: ISeason[] = useSeasonsStore.getState().seasons;
   const playerSeason = seasons.find((season: ISeason) => season.id === seasonId);
   const totalPoints = playerSeason?.games.reduce((acc: number, curr: IGame) => {
-    return (acc += getPlayerGamePoints(curr, playerId));
+    const points = getPlayerGamePoints(curr, playerId);
+    return (acc += isLastGame(curr) ? points * 2 : points);
   }, 0);
   return totalPoints;
+};
+
+export const getPlayerSeasonGamesCount = (seasonId: number, playerId: number) => {
+  const seasons: ISeason[] = useSeasonsStore.getState().seasons;
+  const playerSeason = seasons.find((season: ISeason) => season.id === seasonId);
+  const totalGames = playerSeason?.games.reduce((acc: number, curr: IGame) => {
+    const index = curr.standings.findIndex(id => id === playerId);
+    return (acc += index != -1 ? 1 : 0);
+  }, 0);
+  return totalGames;
+};
+
+export const sortPlayersByTotalSeasonPointsDesc = (seasonId: number, players: IPlayer[]) => {
+  return players
+    .sort((a: IPlayer, b: IPlayer) => {
+      return getPlayerSeasonPoints(seasonId, a.id) - getPlayerSeasonPoints(seasonId, b.id);
+    })
+    .reverse();
 };

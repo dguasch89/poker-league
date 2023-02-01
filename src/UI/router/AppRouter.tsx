@@ -22,7 +22,7 @@ export const AppRouter = () => {
       <Route path={mainRoute} element={<HomePage />} />
       <Route path={routes.players} element={<Players />} />
       <Route path={routes.rules} element={<Rules />} />
-      <Route path={routes.calendar} element={<Schedule />} />
+      <Route path={routes.schedule} element={<Schedule />} />
       {/* <Route path="*" element={<PageNotFound />} /> */}
       {/* <Route path={ERROR} element={<ErrorPage />} /> */}
     </Routes>
