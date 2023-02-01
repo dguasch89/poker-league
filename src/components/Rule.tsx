@@ -1,5 +1,3 @@
-import devAvatar from '../assets/dev.png';
-import trophy from '../assets/trophy.png';
 import {IEntityDescription} from '../model/interfaces';
 interface RuleProps {
   rule: IEntityDescription;
