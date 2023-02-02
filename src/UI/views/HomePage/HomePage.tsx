@@ -4,7 +4,7 @@ import {Standings} from '../../components/Standings';
 import './homePage.css';
 import {useSeasonsStore} from '../../../state/seasons';
 import {ISeason} from '../../../domain/interfaces';
-import {isSeasonFinalized} from '../../../domain/utils';
+import {isSeasonFinalized} from '../../../domain/season';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(1);

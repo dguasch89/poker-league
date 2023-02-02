@@ -4,7 +4,7 @@ import {
   getPlayerSeasonPoints,
   getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
-} from '../../domain/utils';
+} from '../../domain/season';
 import {usePlayersStore} from '../../state/players';
 interface StandingsProps {
   season: ISeason;

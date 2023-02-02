@@ -3,12 +3,12 @@ import {
   getBestPointsPerGamePercentagePlayer,
   getBestSeasonPlayers,
   getPlayerSeasonPoints,
-} from '../../domain/utils';
+} from '../../domain/season';
 import {usePlayersStore} from '../../state/players';
 import bronzeMedal from '../assets/bronze_medal.png';
 import goldMedal from '../assets/gold_medal.png';
 import silverMedal from '../assets/silver_medal.png';
-import {getPlayerSeasonPointsPerGamePercentage} from '../../domain/utils';
+import {getPlayerSeasonPointsPerGamePercentage} from '../../domain/season';
 
 interface SeasonHighlightsProps {
   season: ISeason;
