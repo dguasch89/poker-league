@@ -1,5 +1,3 @@
-import {usePlayersStore} from '../state/players';
-import {useSeasonsStore} from '../state/seasons';
 import {IGame, IPlayer, ISeason} from './interfaces';
 const pointsByPosition = new Map([
   [1, 25],
@@ -21,50 +19,45 @@ export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
   return pointsByPosition.get(position) || 0;
 };
 
-export const getPlayerSeasonPoints = (seasonId: number, playerId: number) => {
-  const seasons: ISeason[] = useSeasonsStore.getState().seasons;
-  const playerSeason = seasons.find((season: ISeason) => season.id === seasonId);
-  const totalPoints = playerSeason?.games.reduce((acc: number, curr: IGame) => {
+export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
+  const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
     const points = getPlayerGamePoints(curr, playerId);
     return (acc += isLastGame(curr) ? points * 2 : points);
   }, 0);
   return totalPoints || 0;
 };
 
-export const getPlayerSeasonGamesCount = (seasonId: number, playerId: number) => {
-  const seasons: ISeason[] = useSeasonsStore.getState().seasons;
-  const playerSeason = seasons.find((season: ISeason) => season.id === seasonId);
-  const totalGames = playerSeason?.games.reduce((acc: number, curr: IGame) => {
+export const getPlayerSeasonGamesCount = (season: ISeason, playerId: number) => {
+  const totalGames = season?.games.reduce((acc: number, curr: IGame) => {
     const index = curr.standings.findIndex(id => id === playerId);
     return (acc += index != -1 ? 1 : 0);
   }, 0);
   return totalGames || 0;
 };
-export const getPlayerSeasonPointsPerGamePercentage = (seasonId: number, playerId: number): any => {
-  const totalSeasonPoints = getPlayerSeasonPoints(seasonId, playerId);
-  const totalSeasonGames = getPlayerSeasonGamesCount(seasonId, playerId);
+export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId: number): any => {
+  const totalSeasonPoints = getPlayerSeasonPoints(season, playerId);
+  const totalSeasonGames = getPlayerSeasonGamesCount(season, playerId);
   return totalSeasonGames > 0 ? (totalSeasonPoints / totalSeasonGames).toFixed(2) : 0;
 };
 
-export const sortPlayersByTotalSeasonPointsDesc = (seasonId: number, players: IPlayer[]) => {
+export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
   return players
     .sort((a: IPlayer, b: IPlayer) => {
-      return getPlayerSeasonPoints(seasonId, a.id) - getPlayerSeasonPoints(seasonId, b.id);
+      return getPlayerSeasonPoints(season, a.id) - getPlayerSeasonPoints(season, b.id);
     })
     .reverse();
 };
 
-export const getBestSeasonPlayers = (seasonId: number) => {
-  const players: IPlayer[] = usePlayersStore.getState().players;
-  const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(seasonId, players);
+export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
+  const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(season, players);
   return sortedPlayers.slice(0, 3);
 };
 
-export const getBestPointsPerGamePercentagePlayer = (seasonId: number, players: IPlayer[]) => {
+export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: IPlayer[]) => {
   return players.sort((a: IPlayer, b: IPlayer) => {
     return (
-      getPlayerSeasonPointsPerGamePercentage(seasonId, b.id) -
-      getPlayerSeasonPointsPerGamePercentage(seasonId, a.id)
+      getPlayerSeasonPointsPerGamePercentage(season, b.id) -
+      getPlayerSeasonPointsPerGamePercentage(season, a.id)
     );
   })[0];
 };

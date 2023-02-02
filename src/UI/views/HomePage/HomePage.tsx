@@ -45,7 +45,7 @@ export function HomePage() {
           } `}
         >
           {isSeasonFinalized(season) ? (
-            <SeasonHighlights seasonId={season.id} />
+            <SeasonHighlights season={season} />
           ) : (
             <div className="flex bg-indigo-800 rounded-md text-center text-white items-center justify-center font-semibold text-2xl italic p-10 w-full">
               Highlights will appear when season ends
@@ -53,7 +53,7 @@ export function HomePage() {
           )}
 
           <section className="flex flex-col w-full">
-            <Standings season={season.id} />
+            <Standings season={season} />
           </section>
         </div>
       ))}

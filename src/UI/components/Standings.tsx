@@ -1,4 +1,4 @@
-import {IPlayer} from '../../domain/interfaces';
+import {IPlayer, ISeason} from '../../domain/interfaces';
 import {
   getPlayerSeasonGamesCount,
   getPlayerSeasonPoints,
@@ -7,7 +7,7 @@ import {
 } from '../../domain/utils';
 import {usePlayersStore} from '../../state/players';
 interface StandingsProps {
-  season: number;
+  season: ISeason;
 }
 
 export function Standings(props: StandingsProps) {
