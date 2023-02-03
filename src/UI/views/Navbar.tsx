@@ -16,6 +16,7 @@ export function Navbar() {
 
       {Object.entries(routes).map(([route, uri]) => (
         <Link
+          data-testid="nav-item"
           key={route}
           to={uri}
           className={`font-bold hover:opacity-100 transition duration-150 first-letter:uppercase ${

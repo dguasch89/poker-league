@@ -4,7 +4,7 @@ import {Standings} from '../../components/Standings';
 import './homePage.css';
 import {useSeasonsStore} from '../../../state/seasons';
 import {ISeason} from '../../../domain/interfaces';
-import {isSeasonFinalized} from '../../../domain/utils';
+import {isSeasonFinalized} from '../../../domain/season';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(1);
@@ -18,6 +18,7 @@ export function HomePage() {
       <div className="flex flex-row gap-6 p-8 pb-4">
         <div
           onClick={e => setSeasonSelected(1)}
+          data-testid="tab-item"
           className={`font-bold text-xl cursor-pointer transition duration-150 ${
             seasonSelected === 1
               ? 'opacity-100 text-indigo-900'
@@ -28,6 +29,7 @@ export function HomePage() {
         </div>
         <div
           onClick={e => setSeasonSelected(2)}
+          data-testid="tab-item"
           className={`font-bold text-xl cursor-pointer transition duration-150 ${
             seasonSelected === 2
               ? 'opacity-100 text-indigo-900'
