@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "test": "playwright test",
+    "test-unit": "playwright test tests/unit",
+    "test-e2e": "playwright test tests/e2e",
     "build": "tsc && yarn build-css && vite build",
     "preview": "vite preview",
     "build-css": "npx tailwindcss -i ./src/index.css -o ./dist/output.css",

@@ -18,6 +18,7 @@ export function HomePage() {
       <div className="flex flex-row gap-6 p-8 pb-4">
         <div
           onClick={e => setSeasonSelected(1)}
+          data-testid="tab-item"
           className={`font-bold text-xl cursor-pointer transition duration-150 ${
             seasonSelected === 1
               ? 'opacity-100 text-indigo-900'
@@ -28,6 +29,7 @@ export function HomePage() {
         </div>
         <div
           onClick={e => setSeasonSelected(2)}
+          data-testid="tab-item"
           className={`font-bold text-xl cursor-pointer transition duration-150 ${
             seasonSelected === 2
               ? 'opacity-100 text-indigo-900'
