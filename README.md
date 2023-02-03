@@ -12,6 +12,7 @@ An app to handle internal poker league. Shows all played seasons, best players, 
 - Vite
 - TailwindCSS
 - Zustand
+- Playwright
 
 ### Setup
 
@@ -24,5 +25,5 @@ An app to handle internal poker league. Shows all played seasons, best players, 
 ### Deploy
 
 ```
-All code pushed to main will be trigger a Github action, that will compile, test and build code and deploy to netlify automatically
+All code pushed to main will be trigger a 2 Github actions, that will compile, test and build code and deploy to netlify automatically
 ```

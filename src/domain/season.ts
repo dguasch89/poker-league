@@ -1,4 +1,5 @@
 import {IGame, IPlayer, ISeason} from './interfaces';
+import {isInvalidPlayer} from './player.js';
 const pointsByPosition = new Map([
   [1, 25],
   [2, 18],
@@ -14,17 +15,29 @@ const pointsByPosition = new Map([
 const isLastGame = (game: IGame) => game.id === 10;
 
 export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
-  const index = game.standings.findIndex((id: number) => id === playerId);
-  const position = index != -1 ? index + 1 : 0;
-  return pointsByPosition.get(position) || 0;
+  if (!game?.standings) {
+    throw new Error('Game must be defined');
+  } else if (isInvalidPlayer(playerId)) {
+    throw new Error('Invalid playerId. Must be defined and a number more or equals than 0');
+  } else {
+    const index = game.standings.findIndex((id: number) => id === playerId);
+    const position = index != -1 ? index + 1 : 0;
+    return pointsByPosition.get(position) || 0;
+  }
 };
 
 export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
-  const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
-    const points = getPlayerGamePoints(curr, playerId);
-    return (acc += isLastGame(curr) ? points * 2 : points);
-  }, 0);
-  return totalPoints || 0;
+  if (isInvalidPlayer(playerId)) {
+    throw new Error('Invalid playerId. Must be defined and a number more or equals than 0');
+  } else if (!season) {
+    throw new Error('Season must be defined');
+  } else {
+    const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
+      const points = getPlayerGamePoints(curr, playerId);
+      return (acc += isLastGame(curr) ? points * 2 : points);
+    }, 0);
+    return totalPoints || 0;
+  }
 };
 
 export const getPlayerSeasonGamesCount = (season: ISeason, playerId: number) => {

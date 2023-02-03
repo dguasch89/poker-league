@@ -24,4 +24,23 @@ test.describe('Player game points', () => {
     const actual = getPlayerGamePoints(notPlayedGame, 1);
     expect(actual).toEqual(0);
   });
+  test('should throw an error if game is invalid', () => {
+    expect(() => {
+      getPlayerGamePoints(null, 1);
+    }).toThrow();
+    expect(() => {
+      getPlayerGamePoints(undefined, 1);
+    }).toThrow();
+  });
+  test('should throw and error if player is invalid', () => {
+    expect(() => {
+      getPlayerGamePoints(game, undefined);
+    }).toThrow();
+    expect(() => {
+      getPlayerGamePoints(game, null);
+    }).toThrow();
+    expect(() => {
+      getPlayerGamePoints(game, '1');
+    }).toThrow();
+  });
 });
