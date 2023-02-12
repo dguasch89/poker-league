@@ -11,6 +11,10 @@ export interface IPlayer {
   lastSeasonPosition: number;
 }
 
+export interface IWinner {
+  id: number;
+}
+
 export interface IGame {
   id: number;
   description: string;
@@ -24,8 +28,8 @@ export interface ISeason {
 }
 
 export interface IGameSchedule {
-  position: string;
+  position: number;
   date: any;
   hour: string;
-  winner: string;
+  winner: number;
 }
