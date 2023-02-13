@@ -31,8 +31,8 @@ export function Schedule() {
         {games.map((g) => (
           <div
             key={g.position}
-            className="grid gap-4 grid-cols-schedule justify-center items-center rounded-lg h-20 w-4/5 m-2 transform 
-                                transition duration-500 hover:scale-110 cursor-pointer border-4 border-orange-500	 text-2xl font-bold text-white bg-slate-800"
+            className="grid gap-1 md:gap-4 grid-cols-schedule justify-center items-center rounded-lg h-20 w-full m-2 transform 
+                                transition duration-500 hover:scale-110 cursor-pointer border-4 border-orange-500 text-base md:text-2xl font-bold text-white bg-slate-800"
           >
             <span className="p-1 text-center border-r">
               {appendOrdinal(g.position)}
