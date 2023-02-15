@@ -2,23 +2,15 @@ import { format } from "date-fns";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import isPast from "date-fns/isPast";
 import goldMedal from "../assets/gold_medal.png";
-import { IGameSchedule, IPlayer, IWinner } from "../../domain/interfaces";
-import { appendOrdinal, createGames, getWinner } from "../utils/game-schedule";
-import { useWinnersStore } from "../../state/winners";
+import { IGameSchedule, IPlayer } from "../../domain/interfaces";
+import { appendOrdinal, getWinner } from "../utils/game-schedule-utils";
 import { usePlayersStore } from "../../state/players";
+import { useGamesScheduleStore } from "../../state/games-schedule";
 
 export function Schedule() {
-  const winners: IWinner[] = useWinnersStore.getState().winners;
+  const gamesSchedule: IGameSchedule[] =
+    useGamesScheduleStore.getState().gamesSchedule;
   const players: IPlayer[] = usePlayersStore.getState().players;
-  const games: IGameSchedule[] = [
-    {
-      position: 1,
-      date: format(new Date(2023, 1, 23), "MM / dd / yyyy"),
-      hour: "21:30",
-      winner: 1,
-    },
-  ];
-  createGames(games, winners);
 
   return (
     <>
@@ -28,14 +20,14 @@ export function Schedule() {
         </h2>
       </div>
       <div className="flex flex-col justify-center items-center w-full p-4">
-        {games.map((g) => (
+        {gamesSchedule.map((g) => (
           <div
-            key={g.position}
-            className="grid gap-1 md:gap-4 grid-cols-schedule justify-center items-center rounded-lg h-20 w-full m-2 transform 
+            key={g.id}
+            className="grid gap-1 md:gap-4 grid-cols-schedule justify-center items-center rounded-lg h-20 w-11/12 m-2 transform 
                                 transition duration-500 hover:scale-110 cursor-pointer border-4 border-orange-500 text-base md:text-2xl font-bold text-white bg-slate-800"
           >
             <span className="p-1 text-center border-r">
-              {appendOrdinal(g.position)}
+              {appendOrdinal(g.id)}
             </span>
             <span className="p-1 text-center">
               {format(new Date(g.date), "do 'of' MMMM")}
