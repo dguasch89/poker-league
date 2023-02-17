@@ -22,3 +22,10 @@ export interface ISeason {
   description: string;
   games: IGame[];
 }
+
+export interface IGameSchedule {
+  id: number;
+  date: any;
+  hour: string;
+  winner: number;
+}
