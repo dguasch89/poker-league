@@ -5,6 +5,7 @@ import './homePage.css';
 import {useSeasonsStore} from '../../../state/seasons';
 import {ISeason} from '../../../domain/interfaces';
 import {isSeasonFinalized} from '../../../domain/season';
+import {Standings2} from '../../components/Standings2';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(1);
@@ -55,7 +56,7 @@ export function HomePage() {
           )}
 
           <section className="flex flex-col w-full">
-            <Standings season={season} />
+            <Standings2 season={season} />
           </section>
         </div>
       ))}
