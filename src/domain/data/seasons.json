@@ -58,6 +58,12 @@
   {
     "id": 2,
     "description": "Season 2",
-    "games": []
+    "games": [
+      {
+        "id": 1,
+        "description": "Game 1",
+        "standings": [12, 8, 10, 11, 6, 5, 2, 4, 7, 1]
+      }
+    ]
   }
 ]
