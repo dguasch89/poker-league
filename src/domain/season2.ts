@@ -2,7 +2,7 @@ import {IGame, IPlayer, ISeason} from './interfaces';
 import {isInvalidPlayer} from './player';
 import {getPlayerSeasonGamesCount} from './season';
 
-const pointsByPosition = {
+export const pointsByPositionSeason2 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
   5: {1: 20, 2: 16, 3: 11, 4: 9, 5: 4},
   6: {1: 21, 2: 17, 3: 12, 4: 10, 5: 7, 6: 3},
@@ -15,7 +15,7 @@ const pointsByPosition = {
 };
 
 export const getPointsByPosition = (playersCount: number, position: number) => {
-  return (pointsByPosition as any)[playersCount][position];
+  return (pointsByPositionSeason2 as any)[playersCount][position];
 };
 
 const isLastGame = (game: IGame) => game.id === 10;
