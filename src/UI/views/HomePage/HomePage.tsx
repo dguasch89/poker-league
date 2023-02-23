@@ -8,7 +8,7 @@ import {isSeasonFinalized} from '../../../domain/season';
 import {Standings2} from '../../components/Standings2';
 
 export function HomePage() {
-  const [seasonSelected, setSeasonSelected] = useState(1);
+  const [seasonSelected, setSeasonSelected] = useState(2);
   const seasons = useSeasonsStore.getState().seasons;
   return (
     <div className="HomePage">
@@ -56,7 +56,7 @@ export function HomePage() {
           )}
 
           <section className="flex flex-col w-full">
-            <Standings2 season={season} />
+            {season.id === 1 ? <Standings season={season} /> : <Standings2 season={season} />}
           </section>
         </div>
       ))}
