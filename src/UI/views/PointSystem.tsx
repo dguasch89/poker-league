@@ -1,6 +1,4 @@
-import {IPlayer} from '../../domain/interfaces';
 import {pointsByPositionSeason2} from '../../domain/season2';
-import {usePlayersStore} from '../../state/players';
 
 export function PointSystem() {
   return (
