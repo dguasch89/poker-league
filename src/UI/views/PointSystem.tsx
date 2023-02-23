@@ -1,10 +1,8 @@
-import {Player} from '../components/Player';
 import {IPlayer} from '../../domain/interfaces';
-import {usePlayersStore} from '../../state/players';
 import {pointsByPositionSeason2} from '../../domain/season2';
+import {usePlayersStore} from '../../state/players';
 
 export function PointSystem() {
-  const players: IPlayer[] = usePlayersStore.getState().players;
   return (
     <div className="Players p-4 flex flex-col gap-4 m-4">
       <h2 className="border-b-2 pb-4 border-orange-300 text-lg">
