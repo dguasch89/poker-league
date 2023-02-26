@@ -25,7 +25,7 @@ export function Schedule() {
           >
             <span className="text-center border-r">{appendOrdinal(g.id)}</span>
             <span className="p-1 text-center">{format(new Date(g.date), "do 'of' MMMM")}</span>
-            <span className="pr-2 text-center border-r">{g.hour}</span>
+            <span className="pr-2 text-center border-r">{format(new Date(g.date), "HH:mm")}</span>
             <div className="flex p-1 sm:pl-4 justify-end items-center">
               {isPast(new Date(g.date)) ? (
                 <div className="flex justify-center items-center">

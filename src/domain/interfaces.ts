@@ -26,6 +26,5 @@ export interface ISeason {
 export interface IGameSchedule {
   id: number;
   date: any;
-  hour: string;
   winner: number;
 }
