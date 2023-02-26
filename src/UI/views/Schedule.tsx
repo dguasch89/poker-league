@@ -29,8 +29,12 @@ export function Schedule() {
             <div className="flex p-1 sm:pl-4 justify-end items-center">
               {isPast(new Date(g.date)) ? (
                 <div className="flex justify-center items-center">
-                  <img src={goldMedal} className="w-4 sm:w-8 lg:w-12" alt="gold-medal" />
-                  <span className="pl-1">{getPlayerNickName(g.winner, players)}</span>
+                  {g.winner
+                  ? <>
+                    <img src={goldMedal} className="w-4 sm:w-8 lg:w-12" alt="gold-medal" />
+                    <span className="pl-1">{getPlayerNickName(g.winner, players)}</span>
+                  </>
+                  : <span className="pl-1">⏱ Coming soon!</span>}
                 </div>
               ) : (
                 <div>
