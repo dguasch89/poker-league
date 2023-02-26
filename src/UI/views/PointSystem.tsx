@@ -1,4 +1,5 @@
 import {pointsByPositionSeason2} from '../../domain/season2';
+import {appendOrdinal} from '../utils/ordinals';
 
 export function PointSystem() {
   return (
@@ -20,7 +21,7 @@ export function PointSystem() {
             Game with {totalPlayers} players:{' '}
             {Object.values(points).map((value, index) => (
               <span className="m-1">
-                <b className="text-orange-500">{index + 1}º</b>: {value}p
+                <b className="text-orange-500">{appendOrdinal(index + 1)}</b>: {value}p
               </span>
             ))}
           </div>
