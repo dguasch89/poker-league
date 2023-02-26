@@ -5,7 +5,7 @@ import {getPlayerNickName} from '../../domain/player';
 import {useGamesScheduleStore} from '../../state/games-schedule';
 import {usePlayersStore} from '../../state/players';
 import goldMedal from '../assets/gold_medal.png';
-import {appendOrdinal} from '../utils/game-schedule-utils';
+import {appendOrdinal} from '../utils/ordinals';
 
 export function Schedule() {
   const gamesSchedule: IGameSchedule[] = useGamesScheduleStore.getState().gamesSchedule;
