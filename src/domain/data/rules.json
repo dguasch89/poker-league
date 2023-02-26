@@ -1,7 +1,7 @@
 [
   {
     "id": "01",
-    "description": "The games will be played every 15 days on the Pokerstars platform."
+    "description": "The games will be played every 15 days on the PokerStars platform."
   },
   {
     "id": "02",
@@ -25,6 +25,6 @@
   },
   {
     "id": "07",
-    "description": "If a registered player does not attend the game, he will automatically score 0 regardless of the position in which he is left."
+    "description": "If a registered player does not attend the game, he/she will automatically score 0 regardless of the position in which he/she is left."
   }
 ]

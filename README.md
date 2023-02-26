@@ -3,9 +3,9 @@
 <h2>Uxland Poker League</h2>
 </div>
 
-An app to handle internal poker league. Shows all played seasons, best players, standings, schedules, rules and more. Check it out!
+An app to handle our internal poker league. Shows all played seasons, best players, standings, schedules, rules and more. Check it out!
 
-### Build with
+### Built with
 
 - React
 - TypeScript
@@ -25,5 +25,5 @@ An app to handle internal poker league. Shows all played seasons, best players, 
 ### Deploy
 
 ```
-All code pushed to main will be trigger a 2 Github actions, that will compile, test and build code and deploy to netlify automatically
+All code pushed to main will trigger two Github Actions, that will compile, test and build the code and deploy it to Netlify automatically.
 ```

@@ -24,7 +24,7 @@ export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
   if (!game?.standings) {
     throw new Error('Game must be defined');
   } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number more or equals than 0');
+    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
   } else {
     const index = game.standings.findIndex((id: number) => id === playerId);
     const position = index != -1 ? index + 1 : 0;
@@ -34,7 +34,7 @@ export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
 
 export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
   if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number more or equals than 0');
+    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
   } else if (!season) {
     throw new Error('Season must be defined');
   } else {
