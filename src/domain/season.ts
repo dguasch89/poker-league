@@ -1,5 +1,6 @@
 import {IGame, IPlayer, ISeason} from './interfaces';
 import {isInvalidPlayer} from './player.js';
+import {sortBy, maxBy} from './util.js';
 const pointsByPosition = new Map([
   [1, 25],
   [2, 18],
@@ -54,11 +55,7 @@ export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId
 };
 
 export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
-  return [...players]
-    .sort((a: IPlayer, b: IPlayer) => {
-      return getPlayerSeasonPoints(season, a.id) - getPlayerSeasonPoints(season, b.id);
-    })
-    .reverse();
+  return sortBy(players, p => getPlayerSeasonPoints(season, p.id), 'desc');
 };
 
 export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
@@ -67,12 +64,7 @@ export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
 };
 
 export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: IPlayer[]) => {
-  return [...players].sort((a: IPlayer, b: IPlayer) => {
-    return (
-      getPlayerSeasonPointsPerGamePercentage(season, b.id) -
-      getPlayerSeasonPointsPerGamePercentage(season, a.id)
-    );
-  })[0];
+  return maxBy(players, p => Number(getPlayerSeasonPointsPerGamePercentage(season, p.id)));
 };
 
 export const isSeasonFinalized = (season: ISeason) => {
