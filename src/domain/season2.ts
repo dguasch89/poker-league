@@ -1,6 +1,7 @@
 import {IGame, IPlayer, ISeason} from './interfaces';
 import {isInvalidPlayer} from './player';
 import {getPlayerSeasonGamesCount} from './season';
+import {sortBy, maxBy} from './util.js';
 
 export const pointsByPositionSeason2 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
@@ -24,7 +25,7 @@ export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
   if (!game?.standings) {
     throw new Error('Game must be defined');
   } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number more or equals than 0');
+    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
   } else {
     const index = game.standings.findIndex((id: number) => id === playerId);
     const position = index != -1 ? index + 1 : 0;
@@ -34,7 +35,7 @@ export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
 
 export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
   if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number more or equals than 0');
+    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
   } else if (!season) {
     throw new Error('Season must be defined');
   } else {
@@ -52,11 +53,7 @@ export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId
 };
 
 export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
-  return players
-    .sort((a: IPlayer, b: IPlayer) => {
-      return getPlayerSeasonPoints(season, a.id) - getPlayerSeasonPoints(season, b.id);
-    })
-    .reverse();
+  return sortBy(players, p => getPlayerSeasonPoints(season, p.id), 'desc');
 };
 
 export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
@@ -65,10 +62,5 @@ export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
 };
 
 export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: IPlayer[]) => {
-  return players.sort((a: IPlayer, b: IPlayer) => {
-    return (
-      getPlayerSeasonPointsPerGamePercentage(season, b.id) -
-      getPlayerSeasonPointsPerGamePercentage(season, a.id)
-    );
-  })[0];
+  return maxBy(players, p => Number(getPlayerSeasonPointsPerGamePercentage(season, p.id)));
 };
