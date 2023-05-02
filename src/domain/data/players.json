@@ -85,6 +85,13 @@
   },
   {
     "id": 13,
+    "name": "Pedro",
+    "surname": "Barquín",
+    "nickname": "AceptoTuCash",
+    "lastSeasonPosition": 0
+  },
+  {
+    "id": 14,
     "name": "Ignasi",
     "surname": "Reixach",
     "nickname": "nauchaRu",
