@@ -2,6 +2,7 @@ import {IPlayer, ISeason} from '../../domain/interfaces';
 import {getPlayerSeasonGamesCount} from '../../domain/season';
 import {
   getPlayerSeasonPoints,
+  getPlayerSeasonPointsMinusWorstTwo,
   getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
 } from '../../domain/season2';
@@ -26,6 +27,9 @@ export function Standings2(props: StandingsProps) {
           GAMES
         </div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4">
+          VIRTUAL POINTS
+        </div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4">
           POINTS
         </div>
       </div>
@@ -44,6 +48,9 @@ export function Standings2(props: StandingsProps) {
             </div>
             <div className="text-xs p-2 text-right">
               {getPlayerSeasonGamesCount(props.season, player.id)}
+            </div>
+            <div className="font-bold text-sm text-amber-500 text-right pr-4">
+              {getPlayerSeasonPointsMinusWorstTwo(props.season, player.id)}
             </div>
             <div className="font-bold text-sm text-indigo-800 text-right pr-4">
               {getPlayerSeasonPoints(props.season, player.id)}
