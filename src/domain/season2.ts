@@ -1,6 +1,6 @@
 import {IGame, IPlayer, ISeason} from './interfaces';
-import {isInvalidPlayer} from './player';
-import {getPlayerSeasonGamesCount} from './season';
+import {isInvalidPlayer} from './player.js';
+import {getPlayerSeasonGamesCount} from './season.js';
 import {sortBy, maxBy} from './util.js';
 
 export const pointsByPositionSeason2 = {
@@ -63,4 +63,18 @@ export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
 
 export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: IPlayer[]) => {
   return maxBy(players, p => Number(getPlayerSeasonPointsPerGamePercentage(season, p.id)));
+};
+
+export const getPlayerSeasonPointsMinusWorstTwo = (season: ISeason, playerId: number) => {
+  if (isInvalidPlayer(playerId)) {
+    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
+  } else if (!season) {
+    throw new Error('Season must be defined');
+  } else {
+    const totalSeasonGames = getPlayerSeasonGamesCount(season, playerId);
+    const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
+    const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
+    const bestGamesMinusWorstTwo = sortedGamePointsArray.slice(0, totalSeasonGames > 3 ? totalSeasonGames - 2 : totalSeasonGames );
+    return bestGamesMinusWorstTwo?.reduce((acc, curr) => (acc += curr), 0) || 0;
+  }
 };

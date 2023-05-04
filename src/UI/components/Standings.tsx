@@ -5,6 +5,7 @@ import {
   getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
 } from '../../domain/season';
+import { getPlayerSeasonPointsMinusWorstTwo } from '../../domain/season2';
 import {usePlayersStore} from '../../state/players';
 interface StandingsProps {
   season: ISeason;
@@ -17,15 +18,18 @@ export function Standings(props: StandingsProps) {
   return (
     <div className="flex flex-col border-slate-200 border rounded-md shadow-lg">
       <div className="grid grid-cols-standings gap-4 bg-slate-800 rounded-t-md">
-        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 pl-4">POS</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4">PLAYER</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4">
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 pl-4 truncate">POS</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 truncate">PLAYER</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 truncate">
           %P/G
         </div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4">
+        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 truncate">
           GAMES
         </div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4">
+         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
+          VIRTUAL
+        </div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
           POINTS
         </div>
       </div>
@@ -45,6 +49,7 @@ export function Standings(props: StandingsProps) {
             <div className="text-xs p-2 text-right">
               {getPlayerSeasonGamesCount(props.season, player.id)}
             </div>
+            <div className="font-bold text-sm text-amber-500 text-right pr-4">---</div>
             <div className="font-bold text-sm text-indigo-800 text-right pr-4">
               {getPlayerSeasonPoints(props.season, player.id)}
             </div>
