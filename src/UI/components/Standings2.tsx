@@ -18,19 +18,23 @@ export function Standings2(props: StandingsProps) {
   return (
     <div className="flex flex-col border-slate-200 border rounded-md shadow-lg">
       <div className="grid grid-cols-standings gap-4 bg-slate-800 rounded-t-md">
-        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 pl-4 truncate">POS</div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 truncate">PLAYER</div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 pl-4 truncate">
+          POS
+        </div>
+        <div className="font-bold uppercase text-white text-xs sm:text-sm pt-4 pb-4 truncate">
+          PLAYER
+        </div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 truncate">
           %P/G
         </div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 truncate">
           GAMES
         </div>
-        <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
+        {/* <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
           VIRTUAL
-        </div>
+        </div> */}
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
-          POINTS
+          POINTS BEST 8 GAMES
         </div>
       </div>
       <div className="flex flex-col">
@@ -49,9 +53,9 @@ export function Standings2(props: StandingsProps) {
             <div className="text-xs p-2 text-right">
               {getPlayerSeasonGamesCount(props.season, player.id)}
             </div>
-            <div className="font-bold text-sm text-amber-500 text-right pr-4">
+            {/* <div className="font-bold text-sm text-amber-500 text-right pr-4">
               {getPlayerSeasonPointsMinusWorstTwo(props.season, player.id)}
-            </div>
+            </div> */}
             <div className="font-bold text-sm text-indigo-800 text-right pr-4">
               {getPlayerSeasonPoints(props.season, player.id)}
             </div>
