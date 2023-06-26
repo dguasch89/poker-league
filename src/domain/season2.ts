@@ -40,7 +40,7 @@ export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
     throw new Error('Season must be defined');
   } else {
     const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
-    const sortedGamePointsArray = gamePointsArray.sort((a, b) => a - b);
+    const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
     const best8Games = sortedGamePointsArray.slice(0, 8);
     return best8Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
   }
@@ -74,7 +74,10 @@ export const getPlayerSeasonPointsMinusWorstTwo = (season: ISeason, playerId: nu
     const totalSeasonGames = getPlayerSeasonGamesCount(season, playerId);
     const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
     const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
-    const bestGamesMinusWorstTwo = sortedGamePointsArray.slice(0, totalSeasonGames > 3 ? totalSeasonGames - 2 : totalSeasonGames );
+    const bestGamesMinusWorstTwo = sortedGamePointsArray.slice(
+      0,
+      totalSeasonGames > 3 ? totalSeasonGames - 2 : totalSeasonGames
+    );
     return bestGamesMinusWorstTwo?.reduce((acc, curr) => (acc += curr), 0) || 0;
   }
 };
