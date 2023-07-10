@@ -1,5 +1,5 @@
 import {IPlayer, ISeason} from './interfaces';
-import {sortPlayersByTotalSeasonPointsDesc} from './season-best-8';
+import {sortPlayersByTotalSeasonPointsDesc} from './season-best-8.js';
 
 export const isInvalidPlayer = (playerId: number) => {
   return playerId === null || playerId === undefined || playerId < 0 || typeof playerId != 'number';
