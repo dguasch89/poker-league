@@ -24,6 +24,9 @@ export const getGameWinner = (
 };
 
 export const getLastSeasonPosition = (playerId: number, players: IPlayer[], seasons: ISeason[]) => {
-  const lastSeasonSortedPlayers = sortPlayersByTotalSeasonPointsDesc(seasons.at(-1), players);
+  const lastSeasonSortedPlayers = sortPlayersByTotalSeasonPointsDesc(
+    seasons[seasons.length - 1],
+    players
+  );
   return lastSeasonSortedPlayers.findIndex((p: IPlayer) => p.id === playerId) + 1;
 };
