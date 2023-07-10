@@ -5,8 +5,9 @@ import './homePage.css';
 import {useSeasonsStore} from '../../../state/seasons';
 import {ISeason} from '../../../domain/interfaces';
 import {isSeasonFinalized} from '../../../domain/season';
-import {StandingsBest8} from '../../components/Standings-best-8';
-import {SeasonHighlightsBest8} from '../../components/SeasonHighlights-best-8';
+import {StandingsBest8} from '../../components/StandingsBest8';
+import {SeasonHighlightsBest8} from '../../components/SeasonHighlightsBest8';
+import {SeasonDetail} from '../../components/SeasonDetail';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(2);
@@ -44,7 +45,7 @@ export function HomePage() {
       {seasons.map((season: ISeason) => (
         <div
           key={season.id}
-          className={`flex flex-col sm:flex-row gap-8 p-4 sm:pr-8 sm:pl-8 ${
+          className={`flex flex-col gap-8 p-4 sm:pr-8 sm:pl-8 ${
             seasonSelected != season.id && 'hidden'
           } `}
         >
@@ -55,14 +56,11 @@ export function HomePage() {
               <SeasonHighlightsBest8 season={season} />
             )
           ) : (
-            <div className="flex bg-indigo-800 rounded-md text-center text-white items-center justify-center font-semibold text-2xl italic p-10 w-full">
-              Highlights will appear when season ends
-            </div>
+            <div className="flex p-10 w-full">Highlights will appear when season ends</div>
           )}
 
-          <section className="flex flex-col w-full">
-            {season.id === 1 ? <Standings season={season} /> : <StandingsBest8 season={season} />}
-          </section>
+          {season.id === 1 ? <Standings season={season} /> : <StandingsBest8 season={season} />}
+          <SeasonDetail season={season} />
         </div>
       ))}
     </div>

@@ -30,7 +30,7 @@ export function Standings(props: StandingsProps) {
           GAMES
         </div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
-          TOTAL POINTS
+          TOTAL
         </div>
       </div>
       <div className="flex flex-col">
