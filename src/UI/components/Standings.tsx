@@ -5,7 +5,6 @@ import {
   getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
 } from '../../domain/season';
-import {getPlayerSeasonPointsMinusWorstTwo} from '../../domain/season2';
 import {usePlayersStore} from '../../state/players';
 interface StandingsProps {
   season: ISeason;
@@ -30,11 +29,8 @@ export function Standings(props: StandingsProps) {
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 truncate">
           GAMES
         </div>
-        {/* <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
-          VIRTUAL
-        </div> */}
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
-          POINTS BEST 8 GAMES
+          TOTAL POINTS
         </div>
       </div>
       <div className="flex flex-col">
@@ -53,7 +49,6 @@ export function Standings(props: StandingsProps) {
             <div className="text-xs p-2 text-right">
               {getPlayerSeasonGamesCount(props.season, player.id)}
             </div>
-            {/* <div className="font-bold text-sm text-amber-500 text-right pr-4">---</div> */}
             <div className="font-bold text-sm text-indigo-800 text-right pr-4">
               {getPlayerSeasonPoints(props.season, player.id)}
             </div>

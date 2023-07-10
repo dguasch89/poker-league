@@ -1,6 +1,5 @@
 import {test, expect} from '@playwright/test';
 import {getPlayerSeasonPoints} from '../../src/domain/season.js';
-import { getPlayerSeasonPointsMinusWorstTwo } from '../../src/domain/season2.js';
 
 test.describe('Player season points', () => {
   const season = {
@@ -59,7 +58,7 @@ test.describe('Player season points', () => {
       },
     ],
   };
-  
+
   const notPlayedSeason = {
     id: 1,
     description: 'Season 1',
@@ -91,32 +90,7 @@ test.describe('Player season points', () => {
     const actual12 = getPlayerSeasonPoints(season, 12);
     expect(actual12).toEqual(79);
   });
-  test('should calculate season player points according position in games played minus the worst two of them', () => {
-    const actual = getPlayerSeasonPointsMinusWorstTwo(season, 1);
-    expect(actual).toEqual(103)
-    const actual2 = getPlayerSeasonPointsMinusWorstTwo(season, 2);
-    expect(actual2).toEqual(118)
-    const actual3 = getPlayerSeasonPointsMinusWorstTwo(season, 3);
-    expect(actual3).toEqual(31)
-    const actual4 = getPlayerSeasonPointsMinusWorstTwo(season, 4);
-    expect(actual4).toEqual(88)
-    const actual5 = getPlayerSeasonPointsMinusWorstTwo(season, 5);
-    expect(actual5).toEqual(49)
-    const actual6 = getPlayerSeasonPointsMinusWorstTwo(season, 6);
-    expect(actual6).toEqual(72)
-    const actual7 = getPlayerSeasonPointsMinusWorstTwo(season, 7);
-    expect(actual7).toEqual(127)
-    const actual8 = getPlayerSeasonPointsMinusWorstTwo(season, 8);
-    expect(actual8).toEqual(76)
-    const actual9 = getPlayerSeasonPointsMinusWorstTwo(season, 9);
-    expect(actual9).toEqual(20)
-    const actual10 = getPlayerSeasonPointsMinusWorstTwo(season, 10);
-    expect(actual10).toEqual(61)
-    const actual11 = getPlayerSeasonPointsMinusWorstTwo(season, 11);
-    expect(actual11).toEqual(24)
-    const actual12 = getPlayerSeasonPointsMinusWorstTwo(season, 12);
-    expect(actual12).toEqual(50)
-  });
+
   test('should be 0 points if player has not participated in any game', () => {
     const actual = getPlayerSeasonPoints(season, 14);
     expect(actual).toEqual(0);

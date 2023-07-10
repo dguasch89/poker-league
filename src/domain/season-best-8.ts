@@ -19,8 +19,6 @@ export const getPointsByPosition = (playersCount: number, position: number) => {
   return (pointsByPositionSeason2 as any)[playersCount][position];
 };
 
-const isLastGame = (game: IGame) => game.id === 10;
-
 export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
   if (!game?.standings) {
     throw new Error('Game must be defined');
@@ -40,6 +38,17 @@ export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
     throw new Error('Season must be defined');
   } else {
     const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
+    return gamePointsArray?.reduce((acc, curr) => (acc += curr), 0) || 0;
+  }
+};
+
+export const getPlayerSeasonBest8Points = (season: ISeason, playerId: number) => {
+  if (isInvalidPlayer(playerId)) {
+    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
+  } else if (!season) {
+    throw new Error('Season must be defined');
+  } else {
+    const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
     const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
     const best8Games = sortedGamePointsArray.slice(0, 8);
     return best8Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
@@ -53,7 +62,7 @@ export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId
 };
 
 export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
-  return sortBy(players, p => getPlayerSeasonPoints(season, p.id), 'desc');
+  return sortBy(players, p => getPlayerSeasonBest8Points(season, p.id), 'desc');
 };
 
 export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
@@ -63,21 +72,4 @@ export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
 
 export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: IPlayer[]) => {
   return maxBy(players, p => Number(getPlayerSeasonPointsPerGamePercentage(season, p.id)));
-};
-
-export const getPlayerSeasonPointsMinusWorstTwo = (season: ISeason, playerId: number) => {
-  if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else if (!season) {
-    throw new Error('Season must be defined');
-  } else {
-    const totalSeasonGames = getPlayerSeasonGamesCount(season, playerId);
-    const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
-    const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
-    const bestGamesMinusWorstTwo = sortedGamePointsArray.slice(
-      0,
-      totalSeasonGames > 3 ? totalSeasonGames - 2 : totalSeasonGames
-    );
-    return bestGamesMinusWorstTwo?.reduce((acc, curr) => (acc += curr), 0) || 0;
-  }
 };

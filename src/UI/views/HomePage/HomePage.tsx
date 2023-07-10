@@ -5,7 +5,8 @@ import './homePage.css';
 import {useSeasonsStore} from '../../../state/seasons';
 import {ISeason} from '../../../domain/interfaces';
 import {isSeasonFinalized} from '../../../domain/season';
-import {Standings2} from '../../components/Standings2';
+import {StandingsBest8} from '../../components/Standings-best-8';
+import {SeasonHighlightsBest8} from '../../components/SeasonHighlights-best-8';
 
 export function HomePage() {
   const [seasonSelected, setSeasonSelected] = useState(2);
@@ -48,7 +49,11 @@ export function HomePage() {
           } `}
         >
           {isSeasonFinalized(season) ? (
-            <SeasonHighlights season={season} />
+            season.id === 1 ? (
+              <SeasonHighlights season={season} />
+            ) : (
+              <SeasonHighlightsBest8 season={season} />
+            )
           ) : (
             <div className="flex bg-indigo-800 rounded-md text-center text-white items-center justify-center font-semibold text-2xl italic p-10 w-full">
               Highlights will appear when season ends
@@ -56,7 +61,7 @@ export function HomePage() {
           )}
 
           <section className="flex flex-col w-full">
-            {season.id === 1 ? <Standings season={season} /> : <Standings2 season={season} />}
+            {season.id === 1 ? <Standings season={season} /> : <StandingsBest8 season={season} />}
           </section>
         </div>
       ))}
