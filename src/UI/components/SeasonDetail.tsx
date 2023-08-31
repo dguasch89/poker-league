@@ -7,7 +7,7 @@ interface SeasonDetailProps {
 }
 
 export function SeasonDetail(props: SeasonDetailProps) {
-  const players = usePlayersStore.getState().players;
+  const players = usePlayersStore.getState().players.filter(p => p.active);
 
   return (
     <div>

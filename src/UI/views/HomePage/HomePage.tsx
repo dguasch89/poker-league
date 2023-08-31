@@ -10,7 +10,7 @@ import {SeasonHighlightsBest8} from '../../components/SeasonHighlightsBest8';
 import {SeasonDetail} from '../../components/SeasonDetail';
 
 export function HomePage() {
-  const [seasonSelected, setSeasonSelected] = useState(2);
+  const [seasonSelected, setSeasonSelected] = useState(3);
   const seasons = useSeasonsStore.getState().seasons;
   return (
     <div className="HomePage">
@@ -40,6 +40,17 @@ export function HomePage() {
           }`}
         >
           Season 2
+        </div>
+        <div
+          onClick={e => setSeasonSelected(3)}
+          data-testid="tab-item"
+          className={`font-bold text-xl cursor-pointer transition duration-150 ${
+            seasonSelected === 3
+              ? 'opacity-100 text-indigo-900'
+              : 'opacity-40 hover:opacity-100 hover:text-indigo-900'
+          }`}
+        >
+          Season 3
         </div>
       </div>
       {seasons.map((season: ISeason) => (

@@ -3,7 +3,7 @@ import {isInvalidPlayer} from './player.js';
 import {getPlayerSeasonGamesCount} from './season.js';
 import {sortBy, maxBy} from './util.js';
 
-export const pointsByPositionSeason2 = {
+export const pointsByPositionSeasonBest8 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
   5: {1: 20, 2: 16, 3: 11, 4: 9, 5: 4},
   6: {1: 21, 2: 17, 3: 12, 4: 10, 5: 7, 6: 3},
@@ -16,7 +16,7 @@ export const pointsByPositionSeason2 = {
 };
 
 export const getPointsByPosition = (playersCount: number, position: number) => {
-  return (pointsByPositionSeason2 as any)[playersCount][position];
+  return (pointsByPositionSeasonBest8 as any)[playersCount][position];
 };
 
 export const getPlayerGamePoints = (game: IGame, playerId: number): number => {

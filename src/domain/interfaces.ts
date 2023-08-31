@@ -9,6 +9,7 @@ export interface IPlayer {
   surname: string;
   nickname: string;
   lastSeasonPosition: number;
+  active: boolean;
 }
 
 export interface IGame {

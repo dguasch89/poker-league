@@ -12,7 +12,11 @@ export function Player(props: PlayerProps) {
   const seasons: ISeason[] = useSeasonsStore.getState().seasons;
   const players: IPlayer[] = usePlayersStore.getState().players;
   return (
-    <div className="flex flex-row gap-2 rounded-md bg-slate-800 p-4 text-white hover:-rotate-6 cursor-pointer transition duration-150 relative">
+    <div
+      className={`flex flex-row gap-2 rounded-md bg-slate-800 p-4 text-white hover:-rotate-6 cursor-pointer transition duration-150 relative ${
+        !props.player.active ? 'opacity-40' : ''
+      }`}
+    >
       <img src={devAvatar} alt="dev" className="w-16" />
       <div className="flex flex-col">
         <div className="font-bold text-2xl">{props.player.nickname}</div>

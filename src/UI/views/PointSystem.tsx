@@ -1,4 +1,4 @@
-import {pointsByPositionSeason2} from '../../domain/season-best-8';
+import {pointsByPositionSeasonBest8} from '../../domain/season-best-8';
 import {appendOrdinal} from '../utils/ordinals';
 
 export function PointSystem() {
@@ -13,7 +13,7 @@ export function PointSystem() {
       <h2 className="border-b-2 pb-4 border-orange-300 text-lg">
         After 10 games, the best 8 games of each player will count for total points.
       </h2>
-      {Object.values(pointsByPositionSeason2).map(points => {
+      {Object.values(pointsByPositionSeasonBest8).map(points => {
         const totalPlayers = Object.values(points).length;
         return (
           <div key={totalPlayers} className="p-2 bg-slate-100 rounded-md">
