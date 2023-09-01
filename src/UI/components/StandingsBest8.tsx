@@ -12,7 +12,7 @@ interface StandingsProps {
 }
 
 export function StandingsBest8(props: StandingsProps) {
-  const players = usePlayersStore.getState().players.filter(p => p.active);
+  const players = usePlayersStore.getState().players.filter((p: IPlayer) => p.active);
   const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(props.season, players);
 
   return (
