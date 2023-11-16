@@ -149,6 +149,11 @@
         "id": 7,
         "description": "Game 7",
         "standings": [7, 12, 5, 8, 1, 2, 4]
+      },
+      {
+        "id": 8,
+        "description": "Game 8",
+        "standings": [8, 2, 14, 5, 7, 12, 10, 1]
       }
     ]
   }
