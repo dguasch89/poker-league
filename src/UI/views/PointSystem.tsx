@@ -10,9 +10,6 @@ export function PointSystem() {
         not the same to win a game with 5 players compared to winning a game with 10 players.
       </h2>
 
-      <h2 className="border-b-2 pb-4 border-orange-300 text-lg">
-        After 10 games, the best 8 games of each player will count for total points.
-      </h2>
       {Object.values(pointsByPositionSeasonBest8).map(points => {
         const totalPlayers = Object.values(points).length;
         return (

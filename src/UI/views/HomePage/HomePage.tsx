@@ -52,7 +52,7 @@ export function HomePage() {
               <SeasonHighlightsBest12 season={season} />
             )
           ) : (
-            <div className="flex p-4 w-full">Highlights will appear when season ends</div>
+            <div className="flex p-2 w-full">Highlights will appear when season ends</div>
           )}
 
           {season.type === 1 ? (

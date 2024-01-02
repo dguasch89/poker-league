@@ -25,7 +25,7 @@ export function Schedule() {
             className={`${
               isPast(new Date(g.date)) ? '' : 'opacity-60'
             } grid gap-0 sm:gap-4 grid-cols-schedule justify-center items-center rounded-lg m-2 transform 
-                                transition duration-500 hover:scale-110 cursor-pointer border-4 border-orange-500 text-xs sm:text-xl lg:text-xl lg:p-2 font-semibold text-white bg-slate-800`}
+                                transition duration-500 hover:scale-110 cursor-pointer border-4 border-orange-500 text-xs sm:text-sm lg:text-sm lg:p-2 font-semibold text-white bg-slate-800`}
           >
             <span className="text-center border-r">{appendOrdinal(g.id)}</span>
             <span className="p-1 text-center">{format(new Date(g.date), "do 'of' MMMM")}</span>
