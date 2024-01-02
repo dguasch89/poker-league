@@ -4,7 +4,7 @@
     "name": "Daniel",
     "surname": "Sánchez",
     "nickname": "Cambiasyugi",
-    "lastSeasonPosition": 3,
+    "lastSeasonPosition": 4,
     "active": true
   },
   {
@@ -12,7 +12,7 @@
     "name": "Natán",
     "surname": "Peris",
     "nickname": "nperis",
-    "lastSeasonPosition": 2,
+    "lastSeasonPosition": 1,
     "active": true
   },
   {
@@ -20,7 +20,7 @@
     "name": "Cristian",
     "surname": "Payet",
     "nickname": "Payetus",
-    "lastSeasonPosition": 10,
+    "lastSeasonPosition": 11,
     "active": true
   },
   {
@@ -28,7 +28,7 @@
     "name": "Víctor",
     "surname": "Castany",
     "nickname": "Vicuxland",
-    "lastSeasonPosition": 4,
+    "lastSeasonPosition": 9,
     "active": true
   },
   {
@@ -36,7 +36,7 @@
     "name": "Roger",
     "surname": "González",
     "nickname": "rogeruxland",
-    "lastSeasonPosition": 9,
+    "lastSeasonPosition": 8,
     "active": true
   },
   {
@@ -52,7 +52,7 @@
     "name": "Joan",
     "surname": "Bruguera",
     "nickname": "lenstra2",
-    "lastSeasonPosition": 1,
+    "lastSeasonPosition": 2,
     "active": true
   },
   {
@@ -60,7 +60,7 @@
     "name": "Xavier",
     "surname": "Vicente",
     "nickname": "javivicente91",
-    "lastSeasonPosition": 7,
+    "lastSeasonPosition": 3,
     "active": true
   },
   {
@@ -68,7 +68,7 @@
     "name": "Jordi",
     "surname": "Sanchez",
     "nickname": "Jordi848",
-    "lastSeasonPosition": 12,
+    "lastSeasonPosition": 14,
     "active": false
   },
   {
@@ -76,7 +76,7 @@
     "name": "David",
     "surname": "Guasch",
     "nickname": "dguaschm",
-    "lastSeasonPosition": 6,
+    "lastSeasonPosition": 10,
     "active": true
   },
   {
@@ -84,7 +84,7 @@
     "name": "Daní",
     "surname": "Pinart",
     "nickname": "alomogaverAAA",
-    "lastSeasonPosition": 11,
+    "lastSeasonPosition": 12,
     "active": true
   },
   {
@@ -92,7 +92,7 @@
     "name": "Albert",
     "surname": "Mosella",
     "nickname": "muse295",
-    "lastSeasonPosition": 8,
+    "lastSeasonPosition": 6,
     "active": true
   },
   {
@@ -100,7 +100,7 @@
     "name": "Pedro",
     "surname": "Barquín",
     "nickname": "AceptoTuCash",
-    "lastSeasonPosition": 0,
+    "lastSeasonPosition": 15,
     "active": false
   },
   {
@@ -108,7 +108,7 @@
     "name": "Ignasi",
     "surname": "Reixach",
     "nickname": "nauchaRu",
-    "lastSeasonPosition": 0,
+    "lastSeasonPosition": 7,
     "active": true
   }
 ]

@@ -17,14 +17,30 @@
   },
   {
     "id": "05",
-    "description": "At the end of the 10 games, the first 3 places will be awarded (prize yet to be defined)."
+    "description": "At the end of the 15 games, the first 3 places will be awarded."
   },
   {
     "id": "06",
-    "description": "It is totally forbidden to insult or make obscene comments in the game chat."
+    "description": "The total points are based in best 12 of 15 games."
   },
   {
     "id": "07",
+    "description": "Handicap is applied on the best 3 players and 3 worst players of last season (-15, -10, -5, +15, +10, +5)."
+  },
+  {
+    "id": "08",
+    "description": "Each player gains 1 extra point for each KO did on the game."
+  },
+  {
+    "id": "09",
+    "description": "The last game, points x2 (only points by position, not KO's x 2)."
+  },
+  {
+    "id": "10",
+    "description": "It is totally forbidden to insult or make obscene comments in the game chat."
+  },
+  {
+    "id": "111",
     "description": "If a registered player does not attend the game, he/she will automatically score 0 regardless of the position in which he/she is left."
   }
 ]

@@ -182,6 +182,18 @@
       {"playerId": 4, "points": 10},
       {"playerId": 5, "points": 5}
     ],
-    "games": []
+    "games": [
+      {
+        "id": 1,
+        "description": "Game 1",
+        "standings": [2, 6, 1, 14, 7, 8, 5, 12],
+        "kos": [
+          {"playerId": 2, "count": 3},
+          {"playerId": 6, "count": 2},
+          {"playerId": 1, "count": 2},
+          {"playerId": 14, "count": 1}
+        ]
+      }
+    ]
   }
 ]

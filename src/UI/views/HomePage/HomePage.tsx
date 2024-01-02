@@ -8,9 +8,11 @@ import {isSeasonFinalized} from '../../../domain/season';
 import {StandingsBest8} from '../../components/StandingsBest8';
 import {SeasonHighlightsBest8} from '../../components/SeasonHighlightsBest8';
 import {SeasonDetail} from '../../components/SeasonDetail';
+import {SeasonHighlightsBest12} from '../../components/SeasonHighlightsBest12';
+import {StandingsBest12} from '../../components/StandingsBest12';
 
 export function HomePage() {
-  const [seasonSelected, setSeasonSelected] = useState(3);
+  const [seasonSelected, setSeasonSelected] = useState(4);
   const seasons = useSeasonsStore.getState().seasons;
   return (
     <div className="HomePage">
@@ -19,39 +21,20 @@ export function HomePage() {
         <h1 className="font-bold text-4xl text-white italic">UXLAND</h1>
       </section>
       <div className="flex flex-row gap-6 p-8 pb-4">
-        <div
-          onClick={e => setSeasonSelected(1)}
-          data-testid="tab-item"
-          className={`font-bold text-xl cursor-pointer transition duration-150 ${
-            seasonSelected === 1
-              ? 'opacity-100 text-indigo-900'
-              : 'opacity-40 hover:opacity-100 hover:text-indigo-900'
-          }`}
-        >
-          Season 1
-        </div>
-        <div
-          onClick={e => setSeasonSelected(2)}
-          data-testid="tab-item"
-          className={`font-bold text-xl cursor-pointer transition duration-150 ${
-            seasonSelected === 2
-              ? 'opacity-100 text-indigo-900'
-              : 'opacity-40 hover:opacity-100 hover:text-indigo-900'
-          }`}
-        >
-          Season 2
-        </div>
-        <div
-          onClick={e => setSeasonSelected(3)}
-          data-testid="tab-item"
-          className={`font-bold text-xl cursor-pointer transition duration-150 ${
-            seasonSelected === 3
-              ? 'opacity-100 text-indigo-900'
-              : 'opacity-40 hover:opacity-100 hover:text-indigo-900'
-          }`}
-        >
-          Season 3
-        </div>
+        {seasons.map((s: ISeason) => (
+          <div
+            key={s.id}
+            onClick={e => setSeasonSelected(s.id)}
+            data-testid="tab-item"
+            className={`font-bold text-xl cursor-pointer transition duration-150 ${
+              seasonSelected === s.id
+                ? 'opacity-100 text-indigo-900'
+                : 'opacity-40 hover:opacity-100 hover:text-indigo-900'
+            }`}
+          >
+            {s.description}
+          </div>
+        ))}
       </div>
       {seasons.map((season: ISeason) => (
         <div
@@ -61,16 +44,24 @@ export function HomePage() {
           } `}
         >
           {isSeasonFinalized(season) ? (
-            season.id === 1 ? (
+            season.type === 1 ? (
               <SeasonHighlights season={season} />
-            ) : (
+            ) : season.type === 2 ? (
               <SeasonHighlightsBest8 season={season} />
+            ) : (
+              <SeasonHighlightsBest12 season={season} />
             )
           ) : (
-            <div className="flex p-10 w-full">Highlights will appear when season ends</div>
+            <div className="flex p-4 w-full">Highlights will appear when season ends</div>
           )}
 
-          {season.id === 1 ? <Standings season={season} /> : <StandingsBest8 season={season} />}
+          {season.type === 1 ? (
+            <Standings season={season} />
+          ) : season.type === 2 ? (
+            <StandingsBest8 season={season} />
+          ) : (
+            <StandingsBest12 season={season} />
+          )}
           <SeasonDetail season={season} />
         </div>
       ))}
