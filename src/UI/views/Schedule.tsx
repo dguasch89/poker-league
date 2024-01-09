@@ -36,7 +36,7 @@ export function Schedule() {
                   {getGameWinner(g.id, 4, players, seasons) ? (
                     <>
                       <img src={goldMedal} className="w-4 sm:w-8" alt="gold-medal" />
-                      <span className="pl-1">{getGameWinner(g.id, 3, players, seasons)}</span>
+                      <span className="pl-1">{getGameWinner(g.id, 4, players, seasons)}</span>
                     </>
                   ) : (
                     <span className="pl-1">⏱ Coming soon!</span>
