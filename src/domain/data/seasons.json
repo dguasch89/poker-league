@@ -192,6 +192,15 @@
           {"playerId": 3, "count": 3},
           {"playerId": 5, "count": 1}
         ]
+      },
+      {
+        "id": 2,
+        "description": "Game 2",
+        "standings": [3, 1, 14, 4, 2, 8, 5],
+        "kos": [
+          {"playerId": 3, "count": 5},
+          {"playerId": 14, "count": 1}
+        ]
       }
     ]
   }
