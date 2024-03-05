@@ -228,8 +228,8 @@
         "description": "Game 5",
         "standings": [6, 4, 10, 14, 5, 8, 2],
         "kos": [
-          { "playerId": 6, "count": 5 },
-          { "playerId": 10, "count": 1 }
+          { "playerId": 6, "count": 4 },
+          { "playerId": 10, "count": 2 }
         ]
       }
     ]
