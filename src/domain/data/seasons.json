@@ -241,6 +241,16 @@
           {"playerId": 12, "count": 1},
           {"playerId": 2, "count": 1}
         ]
+      },
+      {
+        "id": 7,
+        "description": "Game 7",
+        "standings": [8, 3, 5, 2, 14, 12, 6, 1, 10, 4],
+        "kos": [
+          {"playerId": 8, "count": 3},
+          {"playerId": 5, "count": 3},
+          {"playerId": 3, "count": 3}
+        ]
       }
     ]
   }
