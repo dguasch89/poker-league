@@ -251,6 +251,16 @@
           {"playerId": 5, "count": 3},
           {"playerId": 3, "count": 3}
         ]
+      },
+      {
+        "id": 8,
+        "description": "Game 8",
+        "standings": [1, 2, 5, 12, 8, 4],
+        "kos": [
+          {"playerId": 5, "count": 1},
+          {"playerId": 2, "count": 2},
+          {"playerId": 1, "count": 2}
+        ]
       }
     ]
   }
