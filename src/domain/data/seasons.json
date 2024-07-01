@@ -329,7 +329,7 @@
       {
         "id": 15,
         "description": "Game 15",
-        "standings": [15, 2, 1, 16, 6, 12, 4, 15],
+        "standings": [14, 2, 1, 16, 6, 12, 4, 15],
         "kos": [
           {"playerId": 12, "count": 1},
           {"playerId": 14, "count": 3},
