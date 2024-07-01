@@ -15,6 +15,8 @@ export const pointsByPositionSeasonBest12 = {
   12: {1: 31, 2: 23, 3: 18, 4: 15, 5: 13, 6: 11, 7: 9, 8: 7, 9: 5, 10: 0, 11: 0, 12: 0},
 };
 
+const isLastGame = (game: IGame) => game.id === 15;
+
 export const getPointsByPosition = (playersCount: number, position: number) => {
   return (pointsByPositionSeasonBest12 as any)[playersCount][position] || 0;
 };
@@ -67,8 +69,11 @@ export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
   } else if (!season) {
     throw new Error('Season must be defined');
   } else {
-    const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
-    return gamePointsArray?.reduce((acc, curr) => (acc += curr), 0) || 0;
+    const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
+      const points = getPlayerGamePoints(curr, playerId);
+      return (acc += isLastGame(curr) ? points * 2 : points);
+    }, 0);
+    return totalPoints || 0;
   }
 };
 
