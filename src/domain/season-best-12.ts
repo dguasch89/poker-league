@@ -47,7 +47,7 @@ export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
     const position = index != -1 ? index + 1 : 0;
     const pointsByPosition = getPointsByPosition(game.standings.length, position);
     const kos = getPlayerGameKos(game, playerId);
-    return pointsByPosition + kos;
+    return isLastGame(game) ? (pointsByPosition + kos) * 2 : pointsByPosition + kos;
   }
 };
 
@@ -71,7 +71,7 @@ export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
   } else {
     const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
       const points = getPlayerGamePoints(curr, playerId);
-      return (acc += isLastGame(curr) ? points * 2 : points);
+      return (acc += points);
     }, 0);
     return totalPoints || 0;
   }
