@@ -10,9 +10,11 @@ import {SeasonHighlightsBest8} from '../../components/SeasonHighlightsBest8';
 import {SeasonDetail} from '../../components/SeasonDetail';
 import {SeasonHighlightsBest12} from '../../components/SeasonHighlightsBest12';
 import {StandingsBest12} from '../../components/StandingsBest12';
+import { StandingsBest10 } from "../../components/StandingsBest10";
+import { SeasonHighlightsBest10 } from "../../components/SeasonHighlightsBest10";
 
 export function HomePage() {
-  const [seasonSelected, setSeasonSelected] = useState(4);
+  const [seasonSelected, setSeasonSelected] = useState(5);
   const seasons = useSeasonsStore.getState().seasons;
   return (
     <div className="HomePage">
@@ -48,7 +50,7 @@ export function HomePage() {
               <SeasonHighlights season={season} />
             ) : season.type === 2 ? (
               <SeasonHighlightsBest8 season={season} />
-            ) : (
+            ) : season.type === 4 ? (<SeasonHighlightsBest10 season={season} />) : (
               <SeasonHighlightsBest12 season={season} />
             )
           ) : (
@@ -59,7 +61,7 @@ export function HomePage() {
             <Standings season={season} />
           ) : season.type === 2 ? (
             <StandingsBest8 season={season} />
-          ) : (
+          ) : season.type === 4 ? (<StandingsBest10 season={season} />) : (
             <StandingsBest12 season={season} />
           )}
           <SeasonDetail season={season} />

@@ -327,5 +327,21 @@
         ]
       }
     ]
+  },
+  {
+    "id": 5,
+    "description": "Season 5",
+    "type": 4,
+    "handicaps": [
+      {"playerId": 2, "points": -30},
+      {"playerId": 1, "points": -20},
+      {"playerId": 6, "points": -10},
+      {"playerId": 15, "points": 30},
+      {"playerId": 16, "points": 20},
+      {"playerId": 14, "points": 10}
+    ],
+    "games": [
+      
+    ]
   }
 ]
