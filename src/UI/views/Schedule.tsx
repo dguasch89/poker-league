@@ -16,7 +16,7 @@ export function Schedule() {
   return (
     <>
       <div className="banner flex flex-col gap-2 items-center justify-items-center bg-indigo-900 p-5">
-        <h2 className="font-bold text-center text-2xl text-white italic ">Season 4 schedule</h2>
+        <h2 className="font-bold text-center text-2xl text-white italic ">Season 5 schedule</h2>
       </div>
       <div className="grid grid-cols-3  w-full py-4 px-1">
         {gamesSchedule.map(g => (
