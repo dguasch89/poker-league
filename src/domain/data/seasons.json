@@ -356,12 +356,11 @@
       {
         "id": 1,
         "description": "Game 1",
-        "standings": [6, 15, 14, 3, 16, 4, 12, 2, 1],
+        "standings": [6, 14, 3, 4, 12, 2, 1],
         "kos": [
           {"playerId": 6, "count": 4},
           {"playerId": 14, "count": 1},
-          {"playerId": 3, "count": 2},
-          {"playerId": 15, "count": 1}
+          {"playerId": 3, "count": 2}
         ]
       }
     ]

@@ -40,7 +40,7 @@
     "description": "It is totally forbidden to insult or make obscene comments in the game chat."
   },
   {
-    "id": "111",
-    "description": "If a registered player does not attend the game, he/she will automatically score 0 regardless of the position in which he/she is left."
+    "id": "11",
+    "description": "If a registered player does not attend the game after 30', he/she will automatically score 0 regardless of the position in which he/she is left."
   }
 ]
