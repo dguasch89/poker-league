@@ -25,7 +25,7 @@
   },
   {
     "id": "07",
-    "description": "Handicap is applied on the best 3 players and 3 worst players of last season (-15, -10, -5, +15, +10, +5). A player can only get handicap if has played more than 30% of last season games"
+    "description": "Handicap is applied on the best 3 players and 3 worst players of last season (-30, -20, -10, +30, +20, +10). A player can only get handicap if has played more than 30% of last season games"
   },
   {
     "id": "08",
