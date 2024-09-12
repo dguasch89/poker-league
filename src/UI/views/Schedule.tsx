@@ -16,7 +16,7 @@ export function Schedule() {
   return (
     <>
       <div className="banner flex flex-col gap-2 items-center justify-items-center bg-indigo-900 p-5">
-        <h2 className="font-bold text-center text-2xl text-white italic ">Season 4 schedule</h2>
+        <h2 className="font-bold text-center text-2xl text-white italic ">Season 5 schedule</h2>
       </div>
       <div className="grid grid-cols-3  w-full py-4 px-1">
         {gamesSchedule.map(g => (
@@ -33,10 +33,10 @@ export function Schedule() {
             <div className="flex p-1 sm:pl-4 justify-end items-center">
               {isPast(new Date(g.date)) ? (
                 <div className="flex justify-center items-center">
-                  {getGameWinner(g.id, 4, players, seasons) ? (
+                  {getGameWinner(g.id, 5, players, seasons) ? (
                     <>
                       <img src={goldMedal} className="w-4 sm:w-8" alt="gold-medal" />
-                      <span className="pl-1">{getGameWinner(g.id, 4, players, seasons)}</span>
+                      <span className="pl-1">{getGameWinner(g.id, 5, players, seasons)}</span>
                     </>
                   ) : (
                     <span className="pl-1">⏱ Coming soon!</span>

@@ -53,7 +53,7 @@
     "surname": "Bruguera",
     "nickname": "lenstra2",
     "lastSeasonPosition": 2,
-    "active": true
+    "active": false
   },
   {
     "id": 8,
@@ -109,6 +109,22 @@
     "surname": "Reixach",
     "nickname": "nauchaRu",
     "lastSeasonPosition": 7,
+    "active": true
+  },
+  {
+    "id": 15,
+    "name": "Nacho",
+    "surname": "Losada",
+    "nickname": "Violencery",
+    "lastSeasonPosition": null,
+    "active": true
+  },
+  {
+    "id": 16,
+    "name": "Joan",
+    "surname": "Egea",
+    "nickname": "Joanegea300",
+    "lastSeasonPosition": null,
     "active": true
   }
 ]

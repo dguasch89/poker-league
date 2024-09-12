@@ -1,9 +1,9 @@
-import {IGame, IHandicap, IKO, IPlayer, ISeason} from './interfaces';
+import {IGame, IHandicap, IKO, IPlayer, ISeason} from './interfaces.js';
 import {isInvalidPlayer} from './player.js';
 import {getPlayerSeasonGamesCount} from './season.js';
 import {sortBy, maxBy} from './util.js';
 
-export const pointsByPositionSeasonBest12 = {
+export const pointsByPositionSeasonBest10 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
   5: {1: 20, 2: 16, 3: 11, 4: 9, 5: 4},
   6: {1: 21, 2: 17, 3: 12, 4: 10, 5: 7, 6: 3},
@@ -18,7 +18,7 @@ export const pointsByPositionSeasonBest12 = {
 const isLastGame = (game: IGame) => game.id === 15;
 
 export const getPointsByPosition = (playersCount: number, position: number) => {
-  return (pointsByPositionSeasonBest12 as any)[playersCount][position] || 0;
+  return (pointsByPositionSeasonBest10 as any)[playersCount][position] || 0;
 };
 
 export const getPlayerGameKos = (game: IGame, playerId: number): number => {
@@ -47,7 +47,7 @@ export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
     const position = index != -1 ? index + 1 : 0;
     const pointsByPosition = getPointsByPosition(game.standings.length, position);
     const kos = getPlayerGameKos(game, playerId);
-    return isLastGame(game) ? (pointsByPosition + kos) * 2 : pointsByPosition + kos;
+    return pointsByPosition + kos;
   }
 };
 
@@ -71,7 +71,7 @@ export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
   } else {
     const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
       const points = getPlayerGamePoints(curr, playerId);
-      return (acc += points);
+      return (acc += isLastGame(curr) ? points * 1.5 : points);
     }, 0);
     return totalPoints || 0;
   }
@@ -87,7 +87,7 @@ export const getPlayerSeasonHandicap = (season: ISeason, playerId: number) => {
   }
 };
 
-export const getPlayerSeasonBest12PointsWithHandicap = (season: ISeason, playerId: number) => {
+export const getPlayerSeasonBest10PointsWithHandicap = (season: ISeason, playerId: number) => {
   if (isInvalidPlayer(playerId)) {
     throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
   } else if (!season) {
@@ -95,10 +95,10 @@ export const getPlayerSeasonBest12PointsWithHandicap = (season: ISeason, playerI
   } else {
     const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
     const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
-    const best12Games = sortedGamePointsArray.slice(0, 12);
-    const best12GamesPoints = best12Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
+    const best10Games = sortedGamePointsArray.slice(0, 10);
+    const best10GamesPoints = best10Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
     const handicapPoints = getPlayerSeasonHandicap(season, playerId);
-    return best12GamesPoints + handicapPoints;
+    return best10GamesPoints + handicapPoints;
   }
 };
 
@@ -109,7 +109,7 @@ export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId
 };
 
 export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
-  return sortBy(players, p => getPlayerSeasonBest12PointsWithHandicap(season, p.id), 'desc');
+  return sortBy(players, p => getPlayerSeasonBest10PointsWithHandicap(season, p.id), 'desc');
 };
 
 export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {

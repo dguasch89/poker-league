@@ -25,7 +25,7 @@
   },
   {
     "id": "07",
-    "description": "Handicap is applied on the best 3 players and 3 worst players of last season (-15, -10, -5, +15, +10, +5)."
+    "description": "Handicap is applied on the best 3 players and 3 worst players of last season (-30, -20, -10, +30, +20, +10). A player can only get handicap if has played more than 30% of last season games"
   },
   {
     "id": "08",
@@ -33,14 +33,14 @@
   },
   {
     "id": "09",
-    "description": "The last game, points x2 (only points by position, not KO's x 2)."
+    "description": "The last game, points x2 (only points by position, not KO's x 2). (Point x1,5 if season is short)"
   },
   {
     "id": "10",
     "description": "It is totally forbidden to insult or make obscene comments in the game chat."
   },
   {
-    "id": "111",
-    "description": "If a registered player does not attend the game, he/she will automatically score 0 regardless of the position in which he/she is left."
+    "id": "11",
+    "description": "If a registered player does not attend the game after 30', he/she will automatically score 0 regardless of the position in which he/she is left."
   }
 ]
