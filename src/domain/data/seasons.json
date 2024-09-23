@@ -383,6 +383,15 @@
           {"playerId": 12, "count": 1},
           {"playerId": 1, "count": 1}
         ]
+      },
+      {
+        "id": 4,
+        "description": "Game 4",
+        "standings": [1, 12, 16, 5, 6, 4, 2],
+        "kos": [
+          {"playerId": 6, "count": 2},
+          {"playerId": 1, "count": 4}
+        ]
       }
     ]
   }
