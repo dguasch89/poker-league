@@ -432,6 +432,16 @@
           {"playerId": 5, "count": 4},
           {"playerId": 1, "count": 2}
         ]
+      },
+      {
+        "id": 9,
+        "description": "Game 9",
+        "standings": [6, 3, 12, 1, 2, 16, 5],
+        "kos": [
+          {"playerId": 1, "count": 1},
+          {"playerId": 3, "count": 2},
+          {"playerId": 6, "count": 3}
+        ]
       }
     ]
   }
