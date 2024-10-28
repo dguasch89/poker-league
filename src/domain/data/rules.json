@@ -1,7 +1,7 @@
 [
   {
     "id": "01",
-    "description": "The games will be played every 15 days on the PokerStars platform."
+    "description": "The games will be played every 7 days on the PokerStars platform."
   },
   {
     "id": "02",
@@ -13,15 +13,15 @@
   },
   {
     "id": "04",
-    "description": "There will be a late registration of 2 levels (10 min) in case someone gets confused."
+    "description": "There will be a late registration of 4 levels (20 min) in case someone gets confused."
   },
   {
     "id": "05",
-    "description": "At the end of the 15 games, the first 3 places will be awarded."
+    "description": "At the end of the 12 games, the first 3 places will be awarded."
   },
   {
     "id": "06",
-    "description": "The total points are based in best 12 of 15 games."
+    "description": "The total points are based in best 10 of 12 games."
   },
   {
     "id": "07",
@@ -33,7 +33,7 @@
   },
   {
     "id": "09",
-    "description": "The last game, points x2 (only points by position, not KO's x 2). (Point x1,5 if season is short)"
+    "description": "The last game, points x1,5 (only points by position, not KO's x 2)."
   },
   {
     "id": "10",
