@@ -446,7 +446,7 @@
       {
         "id": 10,
         "description": "Game 10",
-        "standings": [1, 6, 16, 10, 2, 12, 4, 5],
+        "standings": [6, 1, 16, 10, 2, 12, 4, 5],
         "kos": [
           {"playerId": 4, "count": 1},
           {"playerId": 10, "count": 2},
