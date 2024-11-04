@@ -68,5 +68,9 @@ export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: I
 };
 
 export const isSeasonFinalized = (season: ISeason) => {
-  return season.id === 4 ? season.games.length === 15 : season.games.length === 10;
+  return season.id === 4
+    ? season.games.length === 15
+    : season.id === 5
+    ? season.games.length === 12
+    : season.games.length === 10;
 };
