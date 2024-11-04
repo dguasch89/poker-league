@@ -442,6 +442,18 @@
           {"playerId": 3, "count": 2},
           {"playerId": 6, "count": 3}
         ]
+      },
+      {
+        "id": 10,
+        "description": "Game 10",
+        "standings": [1, 6, 16, 10, 2, 12, 4, 5],
+        "kos": [
+          {"playerId": 4, "count": 1},
+          {"playerId": 10, "count": 2},
+          {"playerId": 16, "count": 1},
+          {"playerId": 6, "count": 2},
+          {"playerId": 1, "count": 1}
+        ]
       }
     ]
   }
