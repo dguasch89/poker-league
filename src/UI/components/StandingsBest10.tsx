@@ -9,7 +9,7 @@ import {
   getPlayerSeasonPoints,
   getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
-} from '../../domain/season-best-12';
+} from '../../domain/season-best-10';
 import {usePlayersStore} from '../../state/players';
 import {formatHandicap} from '../utils/format-handicap';
 interface StandingsProps {
