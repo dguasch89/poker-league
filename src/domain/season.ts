@@ -1,4 +1,4 @@
-import {ISeason, ISeasonSettings, TPointsByPosition} from './interfaces';
+import {ISeasonSettings, TPointsByPosition} from './interfaces';
 
 export const pointsByPosition = {
   4: {1: 25, 2: 18, 3: 15, 4: 12},
@@ -18,11 +18,3 @@ export const seasonSettings = {
   pointsByPosition: pointsByPosition,
   bestGames: 10,
 } as ISeasonSettings;
-
-export const isSeasonFinalized = (season: ISeason) => {
-  return season.id === 4
-    ? season.games.length === 15
-    : season.id === 5
-    ? season.games.length === 12
-    : season.games.length === 10;
-};

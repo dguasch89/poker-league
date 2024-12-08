@@ -10,6 +10,7 @@ import {
 import {isInvalidPlayer} from './player';
 import {maxBy, sortBy} from './util';
 import {validateGame, validatePlayer, validateSeason} from './validations';
+import {seasonSettings} from './season';
 
 export const getPointsByPosition = (
   playersCount: number,
@@ -155,4 +156,12 @@ export const getBestPointsPerGamePercentagePlayer = (
   return maxBy(players, p =>
     Number(getPlayerSeasonPointsPerGamePercentage(season, p.id, seasonSettings))
   );
+};
+
+export const isSeasonFinalized = (season: ISeason) => {
+  return season.id === 4
+    ? season.games.length === 15
+    : season.id === 5
+    ? season.games.length === 12
+    : season.games.length === 10;
 };
