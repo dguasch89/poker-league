@@ -1,6 +1,6 @@
 import {IGame, IPlayer, ISeason} from '../../domain/interfaces';
-import {getPlayerGamePoints} from '../../domain/season-best-8';
-import {getPlayerGameKos, getPlayerGamePosition} from '../../domain/shared';
+import {seasonSettings} from '../../domain/season-best-8';
+import {getPlayerGameKos, getPlayerGamePoints, getPlayerGamePosition} from '../../domain/shared';
 import {usePlayersStore} from '../../state/players';
 
 interface SeasonDetailProps {
@@ -59,7 +59,8 @@ export function SeasonDetail(props: SeasonDetailProps) {
                 {getPlayerGamePosition(g, p.id)
                   ? `${getPlayerGamePosition(g, p.id)}º (${getPlayerGamePoints(
                       g,
-                      p.id
+                      p.id,
+                      seasonSettings
                     )}p + ${getPlayerGameKos(g, p.id)} KO)`
                   : '-'}
               </div>

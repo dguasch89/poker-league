@@ -39,6 +39,12 @@ export interface ISeason {
   handicaps: IHandicap[];
 }
 
+export interface ISeasonSettings {
+  lastGame: number;
+  lastGameMultiplier: number;
+  pointsByPosition: TPointsByPosition;
+}
+
 export interface IGameSchedule {
   id: number;
   date: any;

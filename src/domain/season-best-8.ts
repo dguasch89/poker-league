@@ -1,8 +1,7 @@
-import {IGame, IPlayer, ISeason, TPointsByPosition} from './interfaces';
-import {isInvalidPlayer} from './player.js';
-import {getPlayerGamePosition, getPlayerSeasonGamesCount, getPointsByPosition} from './shared';
+import {IGame, IPlayer, ISeason, ISeasonSettings, TPointsByPosition} from './interfaces';
+import {getPlayerGamePoints, getPlayerSeasonGamesCount} from './shared';
 import {maxBy, sortBy} from './util.js';
-import {validateGame, validatePlayer, validateSeason} from './validations';
+import {validatePlayer, validateSeason} from './validations';
 
 export const pointsByPositionSeasonBest8 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
@@ -16,25 +15,27 @@ export const pointsByPositionSeasonBest8 = {
   12: {1: 31, 2: 23, 3: 18, 4: 15, 5: 13, 6: 11, 7: 9, 8: 7, 9: 5, 10: 0, 11: 0, 12: 0},
 } as TPointsByPosition;
 
-export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
-  validatePlayer(playerId);
-  validateGame(game);
-  const position = getPlayerGamePosition(game, playerId);
-  if (!position) return 0;
-  return getPointsByPosition(game.standings.length, position, pointsByPositionSeasonBest8) || 0;
-};
+export const seasonSettings = {
+  lastGame: 10,
+  lastGameMultiplier: 1,
+  pointsByPosition: pointsByPositionSeasonBest8,
+} as ISeasonSettings;
 
 export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
   validatePlayer(playerId);
   validateSeason(season);
-  const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
+  const gamePointsArray = season?.games.map((game: IGame) =>
+    getPlayerGamePoints(game, playerId, seasonSettings)
+  );
   return gamePointsArray?.reduce((acc, curr) => (acc += curr), 0) || 0;
 };
 
 export const getPlayerSeasonBest8Points = (season: ISeason, playerId: number) => {
   validatePlayer(playerId);
   validateSeason(season);
-  const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
+  const gamePointsArray = season?.games.map((game: IGame) =>
+    getPlayerGamePoints(game, playerId, seasonSettings)
+  );
   const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
   const best8Games = sortedGamePointsArray.slice(0, 8);
   return best8Games?.reduce((acc, curr) => (acc += curr), 0) || 0;

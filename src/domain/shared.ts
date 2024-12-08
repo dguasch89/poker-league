@@ -1,5 +1,6 @@
-import {IGame, IHandicap, IKO, ISeason, TPointsByPosition} from './interfaces';
+import {IGame, IHandicap, IKO, ISeason, ISeasonSettings, TPointsByPosition} from './interfaces';
 import {isInvalidPlayer} from './player';
+import {validateGame, validatePlayer} from './validations';
 
 export const getPointsByPosition = (
   playersCount: number,
@@ -53,4 +54,24 @@ export const getPlayerSeasonHandicap = (season: ISeason, playerId: number) => {
   } else {
     return season.handicaps.find((h: IHandicap) => h.playerId === playerId)?.points || 0;
   }
+};
+
+export const getPlayerGamePoints = (
+  game: IGame,
+  playerId: number,
+  seasonSettings: ISeasonSettings
+): number => {
+  validatePlayer(playerId);
+  validateGame(game);
+  const position = getPlayerGamePosition(game, playerId);
+  if (!position) return 0;
+  const pointsByPosition = getPointsByPosition(
+    game.standings.length,
+    position,
+    seasonSettings.pointsByPosition
+  );
+  const kos = getPlayerGameKos(game, playerId);
+  return game.id === seasonSettings.lastGame
+    ? (pointsByPosition + kos) * seasonSettings.lastGameMultiplier
+    : pointsByPosition + kos;
 };
