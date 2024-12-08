@@ -1,4 +1,4 @@
-import {IPlayer, ISeason} from './interfaces';
+import {IGame, IPlayer, ISeason} from './interfaces';
 import {sortPlayersByTotalSeasonPointsDesc} from './season-best-8.js';
 
 export const isInvalidPlayer = (playerId: number) => {
@@ -23,10 +23,11 @@ export const getGameWinner = (
   return getPlayerNickName(winnerId, players);
 };
 
-export const getLastSeasonPosition = (playerId: number, players: IPlayer[], seasons: ISeason[]) => {
-  const lastSeasonSortedPlayers = sortPlayersByTotalSeasonPointsDesc(
-    seasons[seasons.length - 1],
-    players
-  );
-  return lastSeasonSortedPlayers.findIndex((p: IPlayer) => p.id === playerId) + 1;
+export const getPlayerAllTimeWins = (playerId: number, seasons: ISeason[]) => {
+  return seasons.reduce((totalWins, season) => {
+    const seasonWins = season.games.reduce((wins, game) => {
+      return game.standings[0] === playerId ? wins + 1 : wins;
+    }, 0);
+    return totalWins + seasonWins;
+  }, 0);
 };

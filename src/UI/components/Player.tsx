@@ -2,7 +2,7 @@ import {IPlayer, ISeason} from '../../domain/interfaces';
 import devAvatar from '../assets/dev.png';
 import trophy from '../assets/trophy.png';
 import {useSeasonsStore} from '../../state/seasons';
-import {getLastSeasonPosition} from '../../domain/player';
+import {getPlayerAllTimeWins} from '../../domain/player';
 import {usePlayersStore} from '../../state/players';
 interface PlayerProps {
   player: IPlayer;
@@ -25,7 +25,7 @@ export function Player(props: PlayerProps) {
         </div>
         <div className="flex flex-row items-center absolute bottom-1 right-2 gap-1">
           <img src={trophy} alt="trophy" className="w-4 h-4" />
-          <div>{getLastSeasonPosition(props.player.id, players, seasons)}</div>
+          <div>{getPlayerAllTimeWins(props.player.id, seasons)}</div>
         </div>
       </div>
     </div>

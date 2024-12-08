@@ -69,7 +69,7 @@
     "surname": "Sanchez",
     "nickname": "Jordi848",
     "lastSeasonPosition": 14,
-    "active": false
+    "active": true
   },
   {
     "id": 10,
@@ -101,7 +101,7 @@
     "surname": "Barquín",
     "nickname": "AceptoTuCash",
     "lastSeasonPosition": 15,
-    "active": false
+    "active": true
   },
   {
     "id": 14,
