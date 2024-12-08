@@ -1,10 +1,10 @@
 import {IPlayer, ISeason} from '../../domain/interfaces';
 import {
-  getPlayerSeasonGamesCount,
   getPlayerSeasonPoints,
   getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
 } from '../../domain/season';
+import {getPlayerSeasonGamesCount} from '../../domain/shared';
 import {usePlayersStore} from '../../state/players';
 interface StandingsProps {
   season: ISeason;

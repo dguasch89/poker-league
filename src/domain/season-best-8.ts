@@ -1,7 +1,8 @@
-import {IGame, IPlayer, ISeason} from './interfaces';
+import {IGame, IPlayer, ISeason, TPointsByPosition} from './interfaces';
 import {isInvalidPlayer} from './player.js';
-import {getPlayerSeasonGamesCount} from './season.js';
-import {sortBy, maxBy} from './util.js';
+import {getPlayerGamePosition, getPlayerSeasonGamesCount, getPointsByPosition} from './shared';
+import {maxBy, sortBy} from './util.js';
+import {validateGame, validatePlayer, validateSeason} from './validations';
 
 export const pointsByPositionSeasonBest8 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
@@ -13,58 +14,30 @@ export const pointsByPositionSeasonBest8 = {
   10: {1: 27, 2: 21, 3: 16, 4: 13, 5: 11, 6: 9, 7: 7, 8: 5, 9: 3, 10: 0},
   11: {1: 29, 2: 22, 3: 17, 4: 14, 5: 12, 6: 10, 7: 8, 8: 6, 9: 4, 10: 0, 11: 0},
   12: {1: 31, 2: 23, 3: 18, 4: 15, 5: 13, 6: 11, 7: 9, 8: 7, 9: 5, 10: 0, 11: 0, 12: 0},
-};
-
-export const getPointsByPosition = (playersCount: number, position: number) => {
-  return (pointsByPositionSeasonBest8 as any)[playersCount][position];
-};
+} as TPointsByPosition;
 
 export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
-  if (!game?.standings) {
-    throw new Error('Game must be defined');
-  } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else {
-    const index = game.standings.findIndex((id: number) => id === playerId);
-    const position = index != -1 ? index + 1 : 0;
-    return getPointsByPosition(game.standings.length, position) || 0;
-  }
-};
-
-export const getPlayerGamePosition = (game: IGame, playerId: number): number => {
-  if (!game?.standings) {
-    throw new Error('Game must be defined');
-  } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else {
-    const index = game.standings.findIndex((id: number) => id === playerId);
-    const position = index != -1 ? index + 1 : 0;
-    return position;
-  }
+  validatePlayer(playerId);
+  validateGame(game);
+  const position = getPlayerGamePosition(game, playerId);
+  if (!position) return 0;
+  return getPointsByPosition(game.standings.length, position, pointsByPositionSeasonBest8) || 0;
 };
 
 export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
-  if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else if (!season) {
-    throw new Error('Season must be defined');
-  } else {
-    const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
-    return gamePointsArray?.reduce((acc, curr) => (acc += curr), 0) || 0;
-  }
+  validatePlayer(playerId);
+  validateSeason(season);
+  const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
+  return gamePointsArray?.reduce((acc, curr) => (acc += curr), 0) || 0;
 };
 
 export const getPlayerSeasonBest8Points = (season: ISeason, playerId: number) => {
-  if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else if (!season) {
-    throw new Error('Season must be defined');
-  } else {
-    const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
-    const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
-    const best8Games = sortedGamePointsArray.slice(0, 8);
-    return best8Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
-  }
+  validatePlayer(playerId);
+  validateSeason(season);
+  const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
+  const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
+  const best8Games = sortedGamePointsArray.slice(0, 8);
+  return best8Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
 };
 
 export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId: number): any => {

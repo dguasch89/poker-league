@@ -1,6 +1,7 @@
 import {IGame, IPlayer, ISeason} from './interfaces';
-import {isInvalidPlayer} from './player.js';
-import {sortBy, maxBy} from './util.js';
+import {getPlayerGamePosition, getPlayerSeasonGamesCount} from './shared';
+import {maxBy, sortBy} from './util.js';
+import {validateGame, validatePlayer, validateSeason} from './validations';
 const pointsByPosition = new Map([
   [1, 25],
   [2, 18],
@@ -16,38 +17,23 @@ const pointsByPosition = new Map([
 const isLastGame = (game: IGame) => game.id === 10;
 
 export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
-  if (!game?.standings) {
-    throw new Error('Game must be defined');
-  } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to 0');
-  } else {
-    const index = game.standings.findIndex((id: number) => id === playerId);
-    const position = index != -1 ? index + 1 : 0;
-    return pointsByPosition.get(position) || 0;
-  }
+  validatePlayer(playerId);
+  validateGame(game);
+  const position = getPlayerGamePosition(game, playerId);
+  if (!position) return 0;
+  return pointsByPosition.get(position) || 0;
 };
 
 export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
-  if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to 0');
-  } else if (!season) {
-    throw new Error('Season must be defined');
-  } else {
-    const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
-      const points = getPlayerGamePoints(curr, playerId);
-      return (acc += isLastGame(curr) ? points * 2 : points);
-    }, 0);
-    return totalPoints || 0;
-  }
+  validatePlayer(playerId);
+  validateSeason(season);
+  const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
+    const points = getPlayerGamePoints(curr, playerId);
+    return (acc += isLastGame(curr) ? points * 2 : points);
+  }, 0);
+  return totalPoints || 0;
 };
 
-export const getPlayerSeasonGamesCount = (season: ISeason, playerId: number) => {
-  const totalGames = season?.games.reduce((acc: number, curr: IGame) => {
-    const index = curr.standings.findIndex(id => id === playerId);
-    return (acc += index != -1 ? 1 : 0);
-  }, 0);
-  return totalGames || 0;
-};
 export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId: number): any => {
   const totalSeasonPoints = getPlayerSeasonPoints(season, playerId);
   const totalSeasonGames = getPlayerSeasonGamesCount(season, playerId);

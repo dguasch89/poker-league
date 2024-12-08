@@ -1,7 +1,13 @@
-import {IGame, IHandicap, IKO, IPlayer, ISeason} from './interfaces.js';
-import {isInvalidPlayer} from './player.js';
-import {getPlayerSeasonGamesCount} from './season.js';
-import {sortBy, maxBy} from './util.js';
+import {IGame, IPlayer, ISeason} from './interfaces.js';
+import {
+  getPlayerGameKos,
+  getPlayerGamePosition,
+  getPlayerSeasonGamesCount,
+  getPlayerSeasonHandicap,
+  getPointsByPosition,
+} from './shared.js';
+import {maxBy, sortBy} from './util.js';
+import {validateGame, validatePlayer, validateSeason} from './validations.js';
 
 export const pointsByPositionSeasonBest10 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
@@ -17,89 +23,39 @@ export const pointsByPositionSeasonBest10 = {
 
 const isLastGame = (game: IGame) => game.id === 12;
 
-export const getPointsByPosition = (playersCount: number, position: number) => {
-  return (pointsByPositionSeasonBest10 as any)[playersCount][position] || 0;
-};
-
-export const getPlayerGameKos = (game: IGame, playerId: number): number => {
-  if (!game?.standings) {
-    throw new Error('Game must be defined');
-  } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else {
-    return game.kos?.find((ko: IKO) => ko.playerId === playerId)?.count || 0;
-  }
-};
-
-export const getPlayerTotalSeasonKos = (season: ISeason, playerId: number) => {
-  return season.games.reduce((prev, curr) => {
-    return (curr.kos.find(k => k.playerId === playerId)?.count || 0) + prev;
-  }, 0);
-};
-
 export const getPlayerGamePoints = (game: IGame, playerId: number): number => {
-  if (!game?.standings) {
-    throw new Error('Game must be defined');
-  } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else {
-    const index = game.standings.findIndex((id: number) => id === playerId);
-    const position = index != -1 ? index + 1 : 0;
-    const pointsByPosition = getPointsByPosition(game.standings.length, position);
-    const kos = getPlayerGameKos(game, playerId);
-    return isLastGame(game) ? pointsByPosition * 1.5 + kos : pointsByPosition + kos;
-  }
-};
-
-export const getPlayerGamePosition = (game: IGame, playerId: number): number => {
-  if (!game?.standings) {
-    throw new Error('Game must be defined');
-  } else if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else {
-    const index = game.standings.findIndex((id: number) => id === playerId);
-    const position = index != -1 ? index + 1 : 0;
-    return position;
-  }
+  validatePlayer(playerId);
+  validateGame(game);
+  const position = getPlayerGamePosition(game, playerId);
+  if (!position) return 0;
+  const pointsByPosition = getPointsByPosition(
+    game.standings.length,
+    position,
+    pointsByPositionSeasonBest10
+  );
+  const kos = getPlayerGameKos(game, playerId);
+  return isLastGame(game) ? pointsByPosition * 1.5 + kos : pointsByPosition + kos;
 };
 
 export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
-  if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else if (!season) {
-    throw new Error('Season must be defined');
-  } else {
-    const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
-      const points = getPlayerGamePoints(curr, playerId);
-      return (acc += points);
-    }, 0);
-    return totalPoints || 0;
-  }
-};
-
-export const getPlayerSeasonHandicap = (season: ISeason, playerId: number) => {
-  if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else if (!season) {
-    throw new Error('Season must be defined');
-  } else {
-    return season.handicaps.find((h: IHandicap) => h.playerId === playerId)?.points || 0;
-  }
+  validatePlayer(playerId);
+  validateSeason(season);
+  const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
+    const points = getPlayerGamePoints(curr, playerId);
+    return (acc += points);
+  }, 0);
+  return totalPoints || 0;
 };
 
 export const getPlayerSeasonBest10PointsWithHandicap = (season: ISeason, playerId: number) => {
-  if (isInvalidPlayer(playerId)) {
-    throw new Error('Invalid playerId. Must be defined and a number greater than or equal to');
-  } else if (!season) {
-    throw new Error('Season must be defined');
-  } else {
-    const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
-    const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
-    const best10Games = sortedGamePointsArray.slice(0, 10);
-    const best10GamesPoints = best10Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
-    const handicapPoints = getPlayerSeasonHandicap(season, playerId);
-    return best10GamesPoints + handicapPoints;
-  }
+  validatePlayer(playerId);
+  validateSeason(season);
+  const gamePointsArray = season?.games.map((game: IGame) => getPlayerGamePoints(game, playerId));
+  const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
+  const best10Games = sortedGamePointsArray.slice(0, 10);
+  const best10GamesPoints = best10Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
+  const handicapPoints = getPlayerSeasonHandicap(season, playerId);
+  return best10GamesPoints + handicapPoints;
 };
 
 export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId: number): any => {

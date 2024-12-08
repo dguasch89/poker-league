@@ -1,20 +1,17 @@
-import {IPlayer, ISeason} from '../../domain/interfaces';
-import {getPlayerSeasonGamesCount} from '../../domain/season';
+import {IPlayer, StandingsProps} from '../../domain/interfaces';
 import {
   getPlayerSeasonBest10PointsWithHandicap,
-  getPlayerSeasonHandicap,
-  getPlayerTotalSeasonKos,
-} from '../../domain/season-best-10';
-import {
   getPlayerSeasonPoints,
   getPlayerSeasonPointsPerGamePercentage,
   sortPlayersByTotalSeasonPointsDesc,
 } from '../../domain/season-best-10';
+import {
+  getPlayerSeasonGamesCount,
+  getPlayerSeasonHandicap,
+  getPlayerTotalSeasonKos,
+} from '../../domain/shared';
 import {usePlayersStore} from '../../state/players';
 import {formatHandicap} from '../utils/format-handicap';
-interface StandingsProps {
-  season: ISeason;
-}
 
 export function StandingsBest10(props: StandingsProps) {
   const players = usePlayersStore.getState().players.filter((p: IPlayer) => p.active);

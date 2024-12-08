@@ -44,3 +44,9 @@ export interface IGameSchedule {
   date: any;
   winner?: number;
 }
+
+export interface StandingsProps {
+  season: ISeason;
+}
+
+export type TPointsByPosition = {[pos: number]: {[pos: number]: number}};
