@@ -1,5 +1,4 @@
-import {IGame, IPlayer, ISeason} from './interfaces';
-import {sortPlayersByTotalSeasonPointsDesc} from './season-best-8.js';
+import {IPlayer, ISeason} from './interfaces';
 
 export const isInvalidPlayer = (playerId: number) => {
   return playerId === null || playerId === undefined || playerId < 0 || typeof playerId != 'number';

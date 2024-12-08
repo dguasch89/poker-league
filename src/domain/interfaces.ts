@@ -43,6 +43,7 @@ export interface ISeasonSettings {
   lastGame: number;
   lastGameMultiplier: number;
   pointsByPosition: TPointsByPosition;
+  bestGames: number;
 }
 
 export interface IGameSchedule {

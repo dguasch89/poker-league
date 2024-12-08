@@ -1,7 +1,4 @@
-import {IGame, IPlayer, ISeason, ISeasonSettings, TPointsByPosition} from './interfaces.js';
-import {getPlayerGamePoints, getPlayerSeasonGamesCount, getPlayerSeasonHandicap} from './shared.js';
-import {maxBy, sortBy} from './util.js';
-import {validatePlayer, validateSeason} from './validations.js';
+import {ISeasonSettings, TPointsByPosition} from './interfaces.js';
 
 export const pointsByPositionSeasonBest10 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
@@ -19,46 +16,5 @@ export const seasonSettings = {
   lastGame: 12,
   lastGameMultiplier: 1.5,
   pointsByPosition: pointsByPositionSeasonBest10,
+  bestGames: 10,
 } as ISeasonSettings;
-
-export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
-  validatePlayer(playerId);
-  validateSeason(season);
-  const totalPoints = season?.games.reduce((acc: number, curr: IGame) => {
-    const points = getPlayerGamePoints(curr, playerId, seasonSettings);
-    return (acc += points);
-  }, 0);
-  return totalPoints || 0;
-};
-
-export const getPlayerSeasonBest10PointsWithHandicap = (season: ISeason, playerId: number) => {
-  validatePlayer(playerId);
-  validateSeason(season);
-  const gamePointsArray = season?.games.map((game: IGame) =>
-    getPlayerGamePoints(game, playerId, seasonSettings)
-  );
-  const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
-  const best10Games = sortedGamePointsArray.slice(0, 10);
-  const best10GamesPoints = best10Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
-  const handicapPoints = getPlayerSeasonHandicap(season, playerId);
-  return best10GamesPoints + handicapPoints;
-};
-
-export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId: number): any => {
-  const totalSeasonPoints = getPlayerSeasonPoints(season, playerId);
-  const totalSeasonGames = getPlayerSeasonGamesCount(season, playerId);
-  return totalSeasonGames > 0 ? (totalSeasonPoints / totalSeasonGames).toFixed(2) : 0;
-};
-
-export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
-  return sortBy(players, p => getPlayerSeasonBest10PointsWithHandicap(season, p.id), 'desc');
-};
-
-export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
-  const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(season, players);
-  return sortedPlayers.slice(0, 3);
-};
-
-export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: IPlayer[]) => {
-  return maxBy(players, p => Number(getPlayerSeasonPointsPerGamePercentage(season, p.id)));
-};

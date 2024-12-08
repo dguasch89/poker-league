@@ -1,7 +1,4 @@
-import {IGame, IPlayer, ISeason, ISeasonSettings, TPointsByPosition} from './interfaces';
-import {getPlayerGamePoints, getPlayerSeasonGamesCount} from './shared';
-import {maxBy, sortBy} from './util.js';
-import {validatePlayer, validateSeason} from './validations';
+import {ISeasonSettings, TPointsByPosition} from './interfaces';
 
 export const pointsByPositionSeasonBest8 = {
   4: {1: 18, 2: 15, 3: 10, 4: 7},
@@ -19,43 +16,5 @@ export const seasonSettings = {
   lastGame: 10,
   lastGameMultiplier: 1,
   pointsByPosition: pointsByPositionSeasonBest8,
+  bestGames: 8,
 } as ISeasonSettings;
-
-export const getPlayerSeasonPoints = (season: ISeason, playerId: number) => {
-  validatePlayer(playerId);
-  validateSeason(season);
-  const gamePointsArray = season?.games.map((game: IGame) =>
-    getPlayerGamePoints(game, playerId, seasonSettings)
-  );
-  return gamePointsArray?.reduce((acc, curr) => (acc += curr), 0) || 0;
-};
-
-export const getPlayerSeasonBest8Points = (season: ISeason, playerId: number) => {
-  validatePlayer(playerId);
-  validateSeason(season);
-  const gamePointsArray = season?.games.map((game: IGame) =>
-    getPlayerGamePoints(game, playerId, seasonSettings)
-  );
-  const sortedGamePointsArray = gamePointsArray.sort((a, b) => b - a);
-  const best8Games = sortedGamePointsArray.slice(0, 8);
-  return best8Games?.reduce((acc, curr) => (acc += curr), 0) || 0;
-};
-
-export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId: number): any => {
-  const totalSeasonPoints = getPlayerSeasonPoints(season, playerId);
-  const totalSeasonGames = getPlayerSeasonGamesCount(season, playerId);
-  return totalSeasonGames > 0 ? (totalSeasonPoints / totalSeasonGames).toFixed(2) : 0;
-};
-
-export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
-  return sortBy(players, p => getPlayerSeasonBest8Points(season, p.id), 'desc');
-};
-
-export const getBestSeasonPlayers = (players: IPlayer[], season: ISeason) => {
-  const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(season, players);
-  return sortedPlayers.slice(0, 3);
-};
-
-export const getBestPointsPerGamePercentagePlayer = (season: ISeason, players: IPlayer[]) => {
-  return maxBy(players, p => Number(getPlayerSeasonPointsPerGamePercentage(season, p.id)));
-};
