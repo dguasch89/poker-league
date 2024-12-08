@@ -33,7 +33,7 @@ export function StandingsBest15(props: StandingsProps) {
           TOTAL KO's
         </div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 truncate">
-          20 GAMES
+          TOTAL POINTS
         </div>
         <div className="font-bold uppercase text-white text-xs sm:text-sm text-right pt-4 pb-4 pr-4 truncate">
           BEST 15
