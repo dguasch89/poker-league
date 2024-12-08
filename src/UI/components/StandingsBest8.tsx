@@ -10,7 +10,7 @@ import {
 import {usePlayersStore} from '../../state/players';
 
 export function StandingsBest8(props: StandingsProps) {
-  const players = usePlayersStore.getState().players.filter((p: IPlayer) => p.active);
+  const players = usePlayersStore.getState().players;
   const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(props.season, players, seasonSettings);
 
   return (

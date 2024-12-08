@@ -13,7 +13,7 @@ import {usePlayersStore} from '../../state/players';
 import {formatHandicap} from '../utils/format-handicap';
 
 export function StandingsBest12(props: StandingsProps) {
-  const players = usePlayersStore.getState().players.filter((p: IPlayer) => p.active);
+  const players = usePlayersStore.getState().players;
   const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(props.season, players, seasonSettings);
 
   return (

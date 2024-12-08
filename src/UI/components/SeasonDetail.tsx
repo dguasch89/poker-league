@@ -22,7 +22,7 @@ const getColsBySeasonType = (seasonType: number) => {
 };
 
 export function SeasonDetail(props: SeasonDetailProps) {
-  const players = usePlayersStore.getState().players.filter((p: IPlayer) => p.active);
+  const players = usePlayersStore.getState().players;
 
   return (
     <div>
