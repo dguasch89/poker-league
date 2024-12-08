@@ -17,15 +17,15 @@
   },
   {
     "id": "05",
-    "description": "At the end of the 12 games, the first 3 places will be awarded."
+    "description": "At the end of the 20 games, the first 3 places will be awarded."
   },
   {
     "id": "06",
-    "description": "The total points are based in best 10 of 12 games."
+    "description": "The total points are based in best 15 of 20 games."
   },
   {
     "id": "07",
-    "description": "Handicap is applied on the best 3 players and 3 worst players of last season (-30, -20, -10, +30, +20, +10). A player can only get handicap if has played more than 30% of last season games"
+    "description": "No Handicap is applied in this season"
   },
   {
     "id": "08",
@@ -33,7 +33,7 @@
   },
   {
     "id": "09",
-    "description": "The last game, points x1,5 (only points by position, not KO's x 2)."
+    "description": "The last game, points x1,5, included KO's"
   },
   {
     "id": "10",

@@ -476,5 +476,11 @@
         ]
       }
     ]
+  },
+  {
+    "id": 6,
+    "description": "Season 6",
+    "type": 5,
+    "games": []
   }
 ]

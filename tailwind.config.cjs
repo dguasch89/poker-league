@@ -7,6 +7,7 @@ module.exports = {
         // Complex site-specific column configuration
         standings: '10% 1fr 8% 10% 30%',
         standings6: '10% 1fr 8% 10% 15% 15%',
+        standings7: '10% 1fr 8% 10% 15% 15% 15%',
         standings8: '10% 1fr 1fr 8% 10% 10% 15% 15%',
         seasonDetail: '12% repeat(15, 1fr)',
         schedule: '1fr 4fr 1fr 4fr ',

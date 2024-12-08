@@ -29,7 +29,7 @@ export interface IGame {
   kos: IKO[];
 }
 
-export type TSeasonType = 1 | 2 | 3 | 4; //1 = normal, 2 = best 8 games, 3 = best 12 games, 4 = best 10
+export type TSeasonType = 1 | 2 | 3 | 4 | 5; //1 = normal, 2 = best 8 games, 3 = best 12 games, 4 = best 10, 5 = best 15
 
 export interface ISeason {
   id: number;

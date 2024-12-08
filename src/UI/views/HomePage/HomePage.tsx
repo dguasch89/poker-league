@@ -1,20 +1,23 @@
 import {useState} from 'react';
+import {ISeason} from '../../../domain/interfaces';
+import {seasonSettings as settings} from '../../../domain/season';
+import {seasonSettings as settings10} from '../../../domain/season-best-10';
+import {seasonSettings as settings12} from '../../../domain/season-best-12';
+import {seasonSettings as settings15} from '../../../domain/season-best-15';
+import {seasonSettings as settings8} from '../../../domain/season-best-8';
+import {isSeasonFinalized} from '../../../domain/shared';
+import {useSeasonsStore} from '../../../state/seasons';
+import {SeasonDetail} from '../../components/SeasonDetail';
 import {SeasonHighlights} from '../../components/SeasonHighlights';
 import {Standings} from '../../components/Standings';
-import './homePage.css';
-import {useSeasonsStore} from '../../../state/seasons';
-import {ISeason} from '../../../domain/interfaces';
-import {StandingsBest8} from '../../components/StandingsBest8';
-import {SeasonHighlightsBest8} from '../../components/SeasonHighlightsBest8';
-import {SeasonDetail} from '../../components/SeasonDetail';
-import {SeasonHighlightsBest12} from '../../components/SeasonHighlightsBest12';
-import {StandingsBest12} from '../../components/StandingsBest12';
 import {StandingsBest10} from '../../components/StandingsBest10';
-import {SeasonHighlightsBest10} from '../../components/SeasonHighlightsBest10';
-import {isSeasonFinalized} from '../../../domain/shared';
+import {StandingsBest12} from '../../components/StandingsBest12';
+import {StandingsBest15} from '../../components/StandingsBest15';
+import {StandingsBest8} from '../../components/StandingsBest8';
+import './homePage.css';
 
 export function HomePage() {
-  const [seasonSelected, setSeasonSelected] = useState(5);
+  const [seasonSelected, setSeasonSelected] = useState(6);
   const seasons = useSeasonsStore.getState().seasons;
   return (
     <div className="HomePage">
@@ -47,13 +50,15 @@ export function HomePage() {
         >
           {isSeasonFinalized(season) ? (
             season.type === 1 ? (
-              <SeasonHighlights season={season} />
+              <SeasonHighlights season={season} seasonSettings={settings} />
             ) : season.type === 2 ? (
-              <SeasonHighlightsBest8 season={season} />
+              <SeasonHighlights season={season} seasonSettings={settings8} />
             ) : season.type === 4 ? (
-              <SeasonHighlightsBest10 season={season} />
+              <SeasonHighlights season={season} seasonSettings={settings10} />
+            ) : season.type === 5 ? (
+              <SeasonHighlights season={season} seasonSettings={settings15} />
             ) : (
-              <SeasonHighlightsBest12 season={season} />
+              <SeasonHighlights season={season} seasonSettings={settings12} />
             )
           ) : (
             <div className="flex p-2 w-full">Highlights will appear when season ends</div>
@@ -65,6 +70,8 @@ export function HomePage() {
             <StandingsBest8 season={season} />
           ) : season.type === 4 ? (
             <StandingsBest10 season={season} />
+          ) : season.type === 5 ? (
+            <StandingsBest15 season={season} />
           ) : (
             <StandingsBest12 season={season} />
           )}
