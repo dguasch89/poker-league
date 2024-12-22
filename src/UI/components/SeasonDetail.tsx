@@ -22,7 +22,9 @@ const getColsBySeasonType = (seasonType: number) => {
 
 export function SeasonDetail(props: SeasonDetailProps) {
   const players = usePlayersStore.getState().players;
-
+  const nonDeactivatedPlayers = players.filter(
+    (p: IPlayer) => !p.deactivatedFromSeason || props.season.id < p.deactivatedFromSeason
+  );
   return (
     <div>
       <div className="border rounded-md shadow-lg max-sm:hidden">
@@ -44,7 +46,7 @@ export function SeasonDetail(props: SeasonDetailProps) {
             </div>
           ))}
         </div>
-        {players.map((p: IPlayer) => (
+        {nonDeactivatedPlayers.map((p: IPlayer) => (
           <div
             key={p.id}
             style={{

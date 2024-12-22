@@ -98,7 +98,14 @@ export const getPlayerSeasonBestGamesPointsWithHandicap = (season: ISeason, play
 };
 
 export const sortPlayersByTotalSeasonPointsDesc = (season: ISeason, players: IPlayer[]) => {
-  return sortBy(players, p => getPlayerSeasonBestGamesPointsWithHandicap(season, p.id), 'desc');
+  const nonDeactivatedPlayers = players.filter(
+    (p: IPlayer) => !p.deactivatedFromSeason || season.id < p.deactivatedFromSeason
+  );
+  return sortBy(
+    nonDeactivatedPlayers,
+    p => getPlayerSeasonBestGamesPointsWithHandicap(season, p.id),
+    'desc'
+  );
 };
 
 export const getPlayerSeasonPointsPerGamePercentage = (season: ISeason, playerId: number): any => {

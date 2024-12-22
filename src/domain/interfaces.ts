@@ -10,6 +10,7 @@ export interface IPlayer {
   nickname: string;
   lastSeasonPosition: number;
   active: boolean;
+  deactivatedFromSeason?: number;
 }
 
 export interface IKO {

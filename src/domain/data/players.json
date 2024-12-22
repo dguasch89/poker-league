@@ -53,7 +53,8 @@
     "surname": "Bruguera",
     "nickname": "lenstra2",
     "lastSeasonPosition": 2,
-    "active": false
+    "active": false,
+    "deactivatedFromSeason": 4
   },
   {
     "id": 8,
@@ -69,7 +70,8 @@
     "surname": "Sanchez",
     "nickname": "Jordi848",
     "lastSeasonPosition": 14,
-    "active": false
+    "active": false,
+    "deactivatedFromSeason": 3
   },
   {
     "id": 10,
@@ -101,7 +103,8 @@
     "surname": "Barquín",
     "nickname": "AceptoTuCash",
     "lastSeasonPosition": 15,
-    "active": false
+    "active": false,
+    "deactivatedFromSeason": 2
   },
   {
     "id": 14,
