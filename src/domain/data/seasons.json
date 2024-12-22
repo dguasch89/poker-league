@@ -502,7 +502,7 @@
     "description": "Season 6",
     "type": 5,
     "lastGame": 20,
-    "lastGameMultiplier": 2,
+    "lastGameMultiplier": 1.5,
     "pointsByPosition": 3,
     "bestGames": 15,
     "games": []
