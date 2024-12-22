@@ -1,4 +1,4 @@
-import {IPlayer, ISeason, ISeasonSettings} from '../../domain/interfaces';
+import {IPlayer, ISeason} from '../../domain/interfaces';
 import {usePlayersStore} from '../../state/players';
 import bronzeMedal from '../assets/bronze_medal.png';
 import goldMedal from '../assets/gold_medal.png';
@@ -12,16 +12,14 @@ import {
 
 interface SeasonHighlightsProps {
   season: ISeason;
-  seasonSettings: ISeasonSettings;
 }
 
 export function SeasonHighlights(props: SeasonHighlightsProps) {
   const players = usePlayersStore.getState().players;
-  const bestSeasonPlayers = getBestSeasonPlayers(players, props.season, props.seasonSettings);
+  const bestSeasonPlayers = getBestSeasonPlayers(players, props.season);
   const bestSeasonPointsPerGamePercentagePlayer: IPlayer = getBestPointsPerGamePercentagePlayer(
     props.season,
-    players,
-    props.seasonSettings
+    players
   );
   return (
     <div className="flex flex-col w-full gap-4">
@@ -32,8 +30,7 @@ export function SeasonHighlights(props: SeasonHighlightsProps) {
             <img src={goldMedal} className="w-12" alt="gold-medal" />
           </div>
           <div className="text-md font-bold text-amber-500 mb-2">
-            {getPlayerSeasonPoints(props.season, bestSeasonPlayers[0].id, props.seasonSettings)}{' '}
-            points
+            {getPlayerSeasonPoints(props.season, bestSeasonPlayers[0].id)} points
           </div>
           <div className="text-sm">
             {bestSeasonPlayers[0].name} {bestSeasonPlayers[0].surname}
@@ -45,8 +42,7 @@ export function SeasonHighlights(props: SeasonHighlightsProps) {
             <img src={silverMedal} className="w-12" alt="silver-medal" />
           </div>
           <div className="text-md font-bold text-amber-500 mb-2">
-            {getPlayerSeasonPoints(props.season, bestSeasonPlayers[1].id, props.seasonSettings)}{' '}
-            points
+            {getPlayerSeasonPoints(props.season, bestSeasonPlayers[1].id)} points
           </div>
           <div className="text-sm">
             {bestSeasonPlayers[1].name} {bestSeasonPlayers[1].surname}
@@ -58,8 +54,7 @@ export function SeasonHighlights(props: SeasonHighlightsProps) {
             <img src={bronzeMedal} className="w-12" alt="bronze-medal" />
           </div>
           <div className="text-md font-bold text-amber-500 mb-2">
-            {getPlayerSeasonPoints(props.season, bestSeasonPlayers[2].id, props.seasonSettings)}{' '}
-            points
+            {getPlayerSeasonPoints(props.season, bestSeasonPlayers[2].id)} points
           </div>
           <div className="text-sm">
             {bestSeasonPlayers[2].name} {bestSeasonPlayers[2].surname}
@@ -74,8 +69,7 @@ export function SeasonHighlights(props: SeasonHighlightsProps) {
         <div className="text-md font-bold text-amber-500 mb-2">
           {getPlayerSeasonPointsPerGamePercentage(
             props.season,
-            bestSeasonPointsPerGamePercentagePlayer.id,
-            props.seasonSettings
+            bestSeasonPointsPerGamePercentagePlayer.id
           )}{' '}
           %
         </div>

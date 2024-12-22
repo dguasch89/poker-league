@@ -1,5 +1,4 @@
 import {IPlayer, StandingsProps} from '../../domain/interfaces';
-import {seasonSettings} from '../../domain/season-best-15';
 import {
   getPlayerSeasonBestGamesPointsWithHandicap,
   getPlayerSeasonGamesCount,
@@ -12,7 +11,7 @@ import {usePlayersStore} from '../../state/players';
 
 export function StandingsBest15(props: StandingsProps) {
   const players = usePlayersStore.getState().players;
-  const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(props.season, players, seasonSettings);
+  const sortedPlayers = sortPlayersByTotalSeasonPointsDesc(props.season, players);
 
   return (
     <div className="flex flex-col border-slate-200 border rounded-md shadow-lg">
@@ -53,16 +52,16 @@ export function StandingsBest15(props: StandingsProps) {
               {getPlayerSeasonGamesCount(props.season, player.id)}
             </div>
             <div className="text-xs text-right">
-              {getPlayerSeasonPointsPerGamePercentage(props.season, player.id, seasonSettings)}
+              {getPlayerSeasonPointsPerGamePercentage(props.season, player.id)}
             </div>
             <div className="text-xs text-right">
               {getPlayerTotalSeasonKos(props.season, player.id)}
             </div>
             <div className="text-xs p-2 text-right">
-              {getPlayerSeasonPoints(props.season, player.id, seasonSettings)}
+              {getPlayerSeasonPoints(props.season, player.id)}
             </div>
             <div className="font-bold text-sm text-indigo-800 text-right pr-4">
-              {getPlayerSeasonBestGamesPointsWithHandicap(props.season, player.id, seasonSettings)}
+              {getPlayerSeasonBestGamesPointsWithHandicap(props.season, player.id)}
             </div>
           </div>
         ))}

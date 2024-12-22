@@ -1,9 +1,4 @@
 import {IGame, IPlayer, ISeason} from '../../domain/interfaces';
-import {seasonSettings as settings} from '../../domain/season';
-import {seasonSettings as settings8} from '../../domain/season-best-8';
-import {seasonSettings as settings10} from '../../domain/season-best-10';
-import {seasonSettings as settings12} from '../../domain/season-best-12';
-import {seasonSettings as settings15} from '../../domain/season-best-15';
 import {getPlayerGameKos, getPlayerGamePoints, getPlayerGamePosition} from '../../domain/shared';
 import {usePlayersStore} from '../../state/players';
 
@@ -64,7 +59,7 @@ export function SeasonDetail(props: SeasonDetailProps) {
                   ? `${getPlayerGamePosition(g, p.id)}º (${getPlayerGamePoints(
                       g,
                       p.id,
-                      getSeasonSettingsBySeason(props.season.id)
+                      props.season
                     )}p + ${getPlayerGameKos(g, p.id)} KO)`
                   : '-'}
               </div>
@@ -78,22 +73,3 @@ export function SeasonDetail(props: SeasonDetailProps) {
     </div>
   );
 }
-
-export const getSeasonSettingsBySeason = (seasonId: number) => {
-  switch (seasonId) {
-    case 1:
-      return settings;
-    case 2:
-      return settings8;
-    case 3:
-      return settings8;
-    case 4:
-      return settings12;
-    case 5:
-      return settings10;
-    case 6:
-      return settings15;
-    default:
-      return settings15;
-  }
-};

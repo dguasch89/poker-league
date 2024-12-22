@@ -36,6 +36,10 @@ export interface ISeason {
   description: string;
   type: TSeasonType;
   games: IGame[];
+  lastGame: number;
+  lastGameMultiplier: number;
+  pointsByPosition: number;
+  bestGames: 15;
   handicaps: IHandicap[];
 }
 

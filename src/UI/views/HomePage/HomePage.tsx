@@ -1,10 +1,5 @@
 import {useState} from 'react';
 import {ISeason} from '../../../domain/interfaces';
-import {seasonSettings as settings} from '../../../domain/season';
-import {seasonSettings as settings10} from '../../../domain/season-best-10';
-import {seasonSettings as settings12} from '../../../domain/season-best-12';
-import {seasonSettings as settings15} from '../../../domain/season-best-15';
-import {seasonSettings as settings8} from '../../../domain/season-best-8';
 import {isSeasonFinalized} from '../../../domain/shared';
 import {useSeasonsStore} from '../../../state/seasons';
 import {SeasonDetail} from '../../components/SeasonDetail';
@@ -49,17 +44,7 @@ export function HomePage() {
           } `}
         >
           {isSeasonFinalized(season) ? (
-            season.type === 1 ? (
-              <SeasonHighlights season={season} seasonSettings={settings} />
-            ) : season.type === 2 ? (
-              <SeasonHighlights season={season} seasonSettings={settings8} />
-            ) : season.type === 4 ? (
-              <SeasonHighlights season={season} seasonSettings={settings10} />
-            ) : season.type === 5 ? (
-              <SeasonHighlights season={season} seasonSettings={settings15} />
-            ) : (
-              <SeasonHighlights season={season} seasonSettings={settings12} />
-            )
+            <SeasonHighlights season={season} />
           ) : (
             <div className="flex p-2 w-full">Highlights will appear when season ends</div>
           )}
