@@ -40,4 +40,4 @@ export const pointSystem = {
   1: pointsByPosition1,
   2: pointsByPosition2,
   3: pointsByPosition3,
-};
+} as any;
