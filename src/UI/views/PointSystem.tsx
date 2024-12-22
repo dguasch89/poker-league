@@ -10,12 +10,12 @@ export function PointSystem() {
         not the same to win a game with 5 players compared to winning a game with 10 players.
       </h2>
 
-      {Object.values(pointSystem[3]).map(points => {
+      {Object.values(pointSystem[3]).map((points: any) => {
         const totalPlayers = Object.values(points).length;
         return (
           <div key={totalPlayers} className="p-2 bg-slate-100 rounded-md">
             Game with {totalPlayers} players:{' '}
-            {Object.values(points).map((value, index) => (
+            {Object.values(points).map((value: any, index) => (
               <span className="m-1">
                 <b className="text-orange-500">{appendOrdinal(index + 1)}</b>: {value}p
               </span>
