@@ -505,6 +505,16 @@
     "lastGameMultiplier": 1.5,
     "pointsByPosition": 3,
     "bestGames": 15,
-    "games": []
+    "games": [
+      {
+        "id": 1,
+        "description": "Game 1",
+        "standings": [1, 15, 2, 6, 8, 4, 5, 16],
+        "kos": [
+          {"playerId": 4, "count": 1},
+          {"playerId": 1, "count": 6}
+        ]
+      }
+    ]
   }
 ]
