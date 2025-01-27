@@ -518,11 +518,23 @@
       {
         "id": 2,
         "description": "Game 2",
-        "standings": [14,1,12,15,8,2,5,16],
+        "standings": [14, 1, 12, 15, 8, 2, 5, 16],
         "kos": [
           {"playerId": 14, "count": 3},
           {"playerId": 15, "count": 3},
           {"playerId": 1, "count": 1}
+        ]
+      },
+      {
+        "id": 3,
+        "description": "Game 3",
+        "standings": [2, 12, 15, 16, 1, 8, 5, 14, 6, 4],
+        "kos": [
+          {"playerId": 5, "count": 1},
+          {"playerId": 12, "count": 3},
+          {"playerId": 8, "count": 1},
+          {"playerId": 16, "count": 1},
+          {"playerId": 2, "count": 3}
         ]
       }
     ]
